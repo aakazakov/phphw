@@ -1,5 +1,7 @@
 <?php
 
+namespace app\interfaces;
+
 interface IModel
 {
     public function getOne(int $id);

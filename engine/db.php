@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace app\engine;
+
 class Db
 {
     public function queryOne(string $sql, array $params = []) : string

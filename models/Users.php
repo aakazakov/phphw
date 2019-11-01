@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace app\models;
+
 class Users extends Model
 {
     private $id;

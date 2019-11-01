@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 include '../engine/Autoload.php';
 
-function __autoload($className)
-{
-    (new Autoload())->loadClass($className);
-}
+spl_autoload_register([new Autoload, 'LoadClass']);
 
 $product - new Product();
 

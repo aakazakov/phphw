@@ -6,6 +6,6 @@ include '../engine/Autoload.php';
 
 spl_autoload_register([new Autoload, 'LoadClass']);
 
-$product = new Product();
+$product = new Product(new Db());
 
 var_dump($product);

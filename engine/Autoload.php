@@ -6,7 +6,8 @@ class Autoload
 {
     private $path = [
         'models',
-        'engine'
+        'engine',
+        'interfaces'
     ];
 
     public function LoadClass($className)

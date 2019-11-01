@@ -9,3 +9,6 @@ spl_autoload_register([new Autoload, 'LoadClass']);
 $product = new Product(new Db());
 
 var_dump($product);
+
+echo $product->getOne(5);
+echo $product->getAll();

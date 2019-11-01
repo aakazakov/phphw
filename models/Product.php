@@ -16,9 +16,15 @@ class Product
         $this->db = $db;
     }
 
-    protected function getOne(number $id)
+    public function getOne(int $id) : string
     {
         $sql = "SELECT * FROM `goods` WHERE id = {$id}";
+        return $this->db->queryOne($sql);
+    }
+
+    public function getAll() : string
+    {
+        $sql = "SELECT * FROM `goods`";
         return $this->db->queryOne($sql);
     }
 }

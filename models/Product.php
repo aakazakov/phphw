@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace app\models;
 
+use app\models\Model;
+
 class Product extends Model
 {
     private $id;

@@ -4,20 +4,11 @@ declare(strict_types=1);
 
 class Autoload
 {
-    private $path = [
-        'models',
-        'engine',
-        'interfaces'
-    ];
-
     public function LoadClass($className)
     {
-        foreach ($this->path as $path) {
-            $fileName = "../{$path}/{$className}.php";
-            if (file_exists($fileName)) {
-                include $fileName;
-                break;
-            }
+        $file = str_replace(['app', '\\'], ['..', '/'], $className) . '.php';
+        if (file_exists($file)) {
+            include $file;
         }
     }
 }

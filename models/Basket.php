@@ -6,7 +6,7 @@ namespace app\models;
 
 use app\models\Model;
 
-class Cart extends Model
+class Basket extends Model
 {
     protected $id;
     protected $session_id;

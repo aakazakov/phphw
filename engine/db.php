@@ -20,9 +20,11 @@ class Db
 
     private $connection = null;
 
-    private function query(string $sql)
+    private function query(string $sql, array $params)
     {
-        return $this->getConnection()->query($sql);
+        $pdoStatement = $this->getConnection()->prepare($sql);
+        $pdoStatement->execute($params);
+        return $pdoStatement;
     }
 
     private function getConnection() : PDO

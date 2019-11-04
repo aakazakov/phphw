@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-include '../engine/Autoload.php';
-include '../config/config.php';
+include realpath('../engine/Autoload.php');
+include realpath('../config/config.php');
 
 use app\models\{Product, Users};
 use app\engine\{Db, Autoload};

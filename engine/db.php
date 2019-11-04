@@ -20,6 +20,11 @@ class Db
 
     private $connection = null;
 
+    private function query(string $sql)
+    {
+        return $this->getConnection()->query($sql);
+    }
+
     private function getConnection()
     {
         if(is_null($this->connection)) {

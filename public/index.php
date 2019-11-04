@@ -14,5 +14,3 @@ $db = new Db();
 
 $product = new Product($db);
 $user = new Users($db);
-
-var_dump($product);

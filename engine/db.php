@@ -25,9 +25,9 @@ class Db
         return $sql;
     }
 
-    public function queryAll(string $sql, array $params = []) : string
+    public function queryAll(string $sql, array $params = []) : array
     {
-        return $sql;
+        return $this->query($sql, $params)->fetchAll();
     }
 
     private function execute(string $sql, array $params) : bool

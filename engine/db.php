@@ -25,7 +25,7 @@ class Db
         return $this->getConnection()->query($sql);
     }
 
-    private function getConnection()
+    private function getConnection() : PDO
     {
         if(is_null($this->connection)) {
             $this->connection = new PDO(

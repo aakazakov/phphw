@@ -20,6 +20,16 @@ class Db
 
     private $connection = null;
 
+    public function queryOne(string $sql, array $params = []) : string
+    {
+        return $sql;
+    }
+
+    public function queryAll(string $sql, array $params = []) : string
+    {
+        return $sql;
+    }
+
     private function execute(string $sql, array $params) : bool
     {
         $this->query($sql, $params);
@@ -55,15 +65,5 @@ class Db
             $this->config['database'],
             $this->config['charset']
         );
-    }
-
-    public function queryOne(string $sql, array $params = []) : string
-    {
-        return $sql;
-    }
-
-    public function queryAll(string $sql, array $params = []) : string
-    {
-        return $sql;
     }
 }

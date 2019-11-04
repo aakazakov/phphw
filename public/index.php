@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 include '../engine/Autoload.php';
 
-use app\models\Product;
-use app\models\Users;
+use app\models\{Product, Users};
 use app\engine\Db;
 
 spl_autoload_register([new Autoload, 'LoadClass']);

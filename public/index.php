@@ -6,6 +6,7 @@ include '../engine/Autoload.php';
 
 use app\models\{Product, Users};
 use app\engine\Db;
+use app\engine\Autoload;
 
 spl_autoload_register([new Autoload, 'LoadClass']);
 

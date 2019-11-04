@@ -20,6 +20,12 @@ class Db
 
     private $connection = null;
 
+    private function execute(string $sql, array $params) : bool
+    {
+        $this->query($sql, $params);
+        return true;
+    }
+
     private function query(string $sql, array $params)
     {
         $pdoStatement = $this->getConnection()->prepare($sql);

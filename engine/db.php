@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\engine;
 
-use PDO;
+use \PDO;
 
 class Db
 {
@@ -23,11 +23,11 @@ class Db
     private function getConnection()
     {
         if(is_null($this->connection)) {
-            $this->connection = new \PDO(
-                'mysql:host=localhost;dbname=test',
-                 $this->config['login'],
-                 $this->config['password']
-                );
+            $this->connection = new PDO(
+                $this->prepareDSNString(),
+                $this->config['login'],
+                $this->config['password']
+            );
         }
         return $this->connection;
     }
@@ -42,7 +42,7 @@ class Db
             $this->config['charset']
         );
     }
-    
+
     public function queryOne(string $sql, array $params = []) : string
     {
         return $sql;

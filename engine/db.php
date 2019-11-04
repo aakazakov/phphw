@@ -20,9 +20,9 @@ class Db
 
     private $connection = null;
 
-    public function queryOne(string $sql, array $params = []) : string
+    public function queryOne(string $sql, array $params = []) : mixed
     {
-        return $sql;
+        return $this->queryAll($sql, $params)[0];
     }
 
     public function queryAll(string $sql, array $params = []) : array

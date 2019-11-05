@@ -17,6 +17,14 @@ abstract class Model
         $this->db = Db::getInstance();
     }
 
+    public function insert()
+    {
+        foreach ($this as $key => $value) {
+            var_dump("$key => $value");
+        }
+        // $sql = "INSERT INTO "
+    }
+
     public function getOne(int $id) : array
     {
         $tableName = $this->getTableName();

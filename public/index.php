@@ -10,7 +10,5 @@ use app\engine\{Db, Autoload};
 
 spl_autoload_register([new Autoload, 'LoadClass']);
 
-$db = new Db();
-
-$product = new Product($db);
-$user = new Users($db);
+$product = new Product();
+$user = new Users();

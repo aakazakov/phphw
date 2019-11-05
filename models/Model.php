@@ -12,9 +12,9 @@ abstract class Model
 
     abstract public function getTableName();
 
-    public function __construct(Db $db)
+    public function __construct()
     {
-        $this->db = $db;
+        $this->db = Db::getInstance();
     }
 
     public function getOne(int $id) : array

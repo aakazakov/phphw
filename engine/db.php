@@ -8,6 +8,8 @@ use \PDO;
 
 class Db
 {
+    private static $instance = null;
+    private $connection = null;
     private $config = [
         'driver' => 'mysql',
         'host' => 'localhost',
@@ -17,18 +19,18 @@ class Db
         'charset' => 'utf8'
     ];
 
-    private $connection = null;
-    
-    private static $instance = null;
+    private function __construct() {}
+    private function __clone() {}
+    private function __wakeup() {}
 
-    public static function getInstance() : object
+    public static function getInstance() : Db
     {
         if (is_null(static::$instance)) {
             static::$instance = new static();
         }
         return static::$instance;
     }
-
+    
     public function queryOne(string $sql, array $params = []) : array
     {
         return $this->queryAll($sql, $params)[0];

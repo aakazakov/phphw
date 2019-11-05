@@ -13,4 +13,4 @@ spl_autoload_register([new Autoload, 'LoadClass']);
 $product = new Product();
 $user = new Users();
 
-$product->insert();
+var_dump($product->getOne(2));

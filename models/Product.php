@@ -13,6 +13,13 @@ class Product extends Model
     protected $description;
     protected $price;
 
+    public function __construct(string $name, string $description, float $price)
+    {
+        $this->name = $name;
+        $this->description = $description;
+        $this->price = $price;
+    }
+
     public function getTableName() : string
     {
         return 'goods';

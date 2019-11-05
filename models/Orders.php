@@ -6,7 +6,7 @@ namespace app\models;
 
 use app\models\Model;
 
-class Order extends Model
+class Orders extends Model
 {
     protected $id;
     protected $user_id;

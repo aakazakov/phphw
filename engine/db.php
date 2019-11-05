@@ -17,7 +17,7 @@ class Db
         'host' => 'localhost',
         'login' => 'root',
         'password' => '',
-        'database' => 'shop',
+        'database' => 'shop_db',
         'charset' => 'utf8'
     ];
 

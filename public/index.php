@@ -10,7 +10,8 @@ use app\engine\Autoload;
 
 spl_autoload_register([new Autoload, 'LoadClass']);
 
-$product = new Product();
+$product = new Product('Пицца', 'Ассорти, 32см', 300);
 $user = new Users();
 
-var_dump($product->getOne(2));
+var_dump($product);
+// var_dump($product->getOne(2));

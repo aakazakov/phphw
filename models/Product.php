@@ -8,10 +8,10 @@ use app\models\Model;
 
 class Product extends Model
 {
-    private $id;
-    private $name;
-    private $description;
-    private $price;
+    protected $id;
+    protected $name;
+    protected $description;
+    protected $price;
 
     public function getTableName() : string
     {

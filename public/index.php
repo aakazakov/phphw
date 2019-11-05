@@ -6,9 +6,11 @@ include realpath('../engine/Autoload.php');
 include realpath('../config/config.php');
 
 use app\models\{Product, Users};
-use app\engine\{Db, Autoload};
+use app\engine\Autoload;
 
 spl_autoload_register([new Autoload, 'LoadClass']);
 
 $product = new Product();
 $user = new Users();
+
+$product->insert();

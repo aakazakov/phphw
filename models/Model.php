@@ -20,7 +20,10 @@ abstract class Model
     public function insert()
     {
         foreach ($this as $key => $value) {
-            var_dump("$key => $value");
+            if ($key === 'db') {
+                continue;
+            }
+            // var_dump("$key => $value");
         }
         // $sql = "INSERT INTO "
     }

@@ -20,8 +20,8 @@ abstract class Model
     public function getOne(int $id) : array
     {
         $tableName = $this->getTableName();
-        $sql = "SELECT * FROM `{$tableName}` WHERE id = {$id}";
-        return $this->db->queryOne($sql);
+        $sql = "SELECT * FROM `{$tableName}` WHERE id = :id";
+        return $this->db->queryOne($sql, ['id' => $id]);
     }
 
     public function getAll() : array

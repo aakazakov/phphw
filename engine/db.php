@@ -8,7 +8,6 @@ use \PDO;
 
 class Db
 {
-
     private $config = [
         'driver' => 'mysql',
         'host' => 'localhost',
@@ -19,6 +18,16 @@ class Db
     ];
 
     private $connection = null;
+    
+    private static $instance = null;
+
+    public static function getInstance() : object
+    {
+        if (is_null(static::$instance)) {
+            static::$instance = new static();
+        }
+        return static::$instance;
+    }
 
     public function queryOne(string $sql, array $params = []) : array
     {

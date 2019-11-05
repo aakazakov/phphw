@@ -9,8 +9,10 @@ use app\models\Model;
 class Order extends Model
 {
     protected $id;
-    protected $session_id;
+    protected $user_id;
     protected $goods_id;
+    protected $total_count;
+    protected $total_price;
 
     public function getTableName() : string
     {

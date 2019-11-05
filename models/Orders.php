@@ -6,7 +6,7 @@ namespace app\models;
 
 use app\models\Model;
 
-class Basket extends Model
+class Order extends Model
 {
     protected $id;
     protected $session_id;
@@ -14,6 +14,6 @@ class Basket extends Model
 
     public function getTableName() : string
     {
-        return 'goods';
+        return 'orders';
     }
 }

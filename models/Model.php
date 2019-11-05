@@ -17,17 +17,17 @@ abstract class Model
         $this->db = $db;
     }
 
-    public function getOne(int $id) : string
+    public function getOne(int $id) : array
     {
         $tableName = $this->getTableName();
         $sql = "SELECT * FROM `{$tableName}` WHERE id = {$id}";
         return $this->db->queryOne($sql);
     }
 
-    public function getAll() : string
+    public function getAll() : array
     {
         $tableName = $this->getTableName();
         $sql = "SELECT * FROM `{$tableName}`";
-        return $this->db->queryOne($sql);
+        return $this->db->queryAll($sql);
     }
 }

@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace app\engine;
 
+use app\traits\TSingletone;
 use \PDO;
 
 class Db
 {
-    private static $instance = null;
+    use TSingletone;
+
     private $connection = null;
     private $config = [
         'driver' => 'mysql',
@@ -19,18 +21,6 @@ class Db
         'charset' => 'utf8'
     ];
 
-    private function __construct() {}
-    private function __clone() {}
-    private function __wakeup() {}
-
-    public static function getInstance() : Db
-    {
-        if (is_null(static::$instance)) {
-            static::$instance = new static();
-        }
-        return static::$instance;
-    }
-    
     public function queryOne(string $sql, array $params = []) : array
     {
         return $this->queryAll($sql, $params)[0];

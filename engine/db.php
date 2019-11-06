@@ -42,7 +42,7 @@ class Db
     private function query(string $sql, array $params)
     {
         $pdoStatement = $this->getConnection()->prepare($sql);
-        $pdoStatement->execute($params);
+        ($pdoStatement->execute($params));
         return $pdoStatement;
     }
 

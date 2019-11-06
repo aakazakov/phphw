@@ -44,6 +44,7 @@ abstract class Model
             $values .= ":{$key}, ";
         }
         $sql = "INSERT INTO `{$tableName}` ($keys) values ($values)";
+        $sql = str_replace(', )', ')', $sql);
         $this->db->execute($sql, $params);
     }
 

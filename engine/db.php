@@ -32,17 +32,33 @@ class Db
         return $this->query($sql, $params)->fetchAll();
     }
 
-    public function execute(string $sql, array $params) : void
+    public function insert(string $sql, array $params) : void
     {
-        var_dump($sql);
-        var_dump($params); exit;
+        $this->execute($sql, $params);
+    }
+
+    public function delete(string $sql, array $params) : void
+    {
+        $this->execute($sql, $params);
+    }
+
+    public function getLastId() : float
+    {
+        if ($this->connection) {
+            $lastId = (float) $this->connection->lastInsertId();
+        }
+        return $lastId;
+    }
+
+    private function execute(string $sql, array $params) : void
+    {
         $this->query($sql, $params);
     }
 
     private function query(string $sql, array $params)
     {
         $pdoStatement = $this->getConnection()->prepare($sql);
-        ($pdoStatement->execute($params));
+        $pdoStatement->execute($params);
         return $pdoStatement;
     }
 

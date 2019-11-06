@@ -13,6 +13,6 @@ spl_autoload_register([new Autoload, 'LoadClass']);
 $product = new Product('Пицца', 'Ассорти, 32см', 300);
 $user = new Users();
 
+// $product->doInsert();
 // var_dump($product);
-// var_dump($product->getAll());
-$product->insert();
+// $product->doDelete();

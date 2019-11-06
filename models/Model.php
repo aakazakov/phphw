@@ -19,7 +19,7 @@ abstract class Model
     {
         $tableName = $this->getTableName();
         $sql = "SELECT * FROM `{$tableName}` WHERE id = :id";
-        return $this->db->queryOne($sql, ['id' => $id]);
+        return $this->db->queryOne($sql, [':id' => $id]);
     }
 
     public function getAll() : array
@@ -29,7 +29,7 @@ abstract class Model
         return $this->db->queryAll($sql);
     }
 
-    public function insert()
+    public function doInsert() : void
     {
         $tableName = $this->getTableName();
         $keys = "";
@@ -45,7 +45,19 @@ abstract class Model
         }
         $sql = "INSERT INTO `{$tableName}` ($keys) values ($values)";
         $sql = str_replace(', )', ')', $sql);
-        $this->db->execute($sql, $params);
+        $this->db->insert($sql, $params);
+        $this->setId();
+    }
+
+    protected function setId() {
+        $this->id = $this->db->getLastId();
+    }
+
+    public function doDelete() : void
+    {
+        $tableName = $this->getTableName();
+        $sql = "DELETE FROM `{$tableName}` WHERE `id` = :id";
+        $this->db->delete($sql, [':id' => $this->id]);
     }
 
     abstract public function getTableName();

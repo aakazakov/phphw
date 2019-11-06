@@ -10,22 +10,9 @@ abstract class Model
 {
     private $db;
 
-    abstract public function getTableName();
-
     public function __construct()
     {
         $this->db = Db::getInstance();
-    }
-
-    public function insert()
-    {
-        foreach ($this as $key => $value) {
-            if ($key === 'db') {
-                continue;
-            }
-            // var_dump("$key => $value");
-        }
-        // $sql = "INSERT INTO "
     }
 
     public function getOne(int $id) : array
@@ -41,4 +28,24 @@ abstract class Model
         $sql = "SELECT * FROM `{$tableName}`";
         return $this->db->queryAll($sql);
     }
+
+    public function insert()
+    {
+        $tableName = $this->getTableName();
+        $keys = "";
+        $values = "";
+        $params = [];
+        foreach ($this as $key => $value) {
+            if ($key === 'db' || $key === 'id') {
+                continue;
+            }
+            $params[":{$key}"] = $value;
+            $keys .= "`{$key}`, ";
+            $values .= ":{$key}, ";
+        }
+        $sql = "INSERT INTO `{$tableName}` ($keys) values ($values)";
+        $this->db->execute($sql, $params);
+    }
+
+    abstract public function getTableName();
 }

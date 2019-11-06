@@ -32,10 +32,11 @@ class Db
         return $this->query($sql, $params)->fetchAll();
     }
 
-    private function execute(string $sql, array $params) : bool
+    public function execute(string $sql, array $params) : void
     {
+        var_dump($sql);
+        var_dump($params); exit;
         $this->query($sql, $params);
-        return true;
     }
 
     private function query(string $sql, array $params)

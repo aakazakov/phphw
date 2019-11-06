@@ -42,12 +42,12 @@ class Db
         $this->execute($sql, $params);
     }
 
-    public function getLastId() : float
+    public function getLastId()
     {
-        if ($this->connection) {
-            $lastId = (float) $this->connection->lastInsertId();
+        if (is_null($this->connection)) {
+            $this->connection = $this->getConnection();
         }
-        return $lastId;
+        return (float) $this->connection->lastInsertId();
     }
 
     private function execute(string $sql, array $params) : void

@@ -49,7 +49,8 @@ abstract class Model
         $this->setId();
     }
 
-    protected function setId() {
+    protected function setId() : void
+    {
         $this->id = $this->db->getLastId();
     }
 

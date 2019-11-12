@@ -12,12 +12,18 @@ class Product extends Model
     protected $name;
     protected $description;
     protected $price;
+    protected $image;
 
-    public function __construct(string $name = null, string $description = null, float $price = null)
-    {
+    public function __construct(
+        string $name = null,
+        string $description = null,
+        float $price = null,
+        string $image = null
+        ) {
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
+        $this->image = $image;
     }
 
     public static function getTableName() : string

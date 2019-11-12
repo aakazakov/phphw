@@ -39,13 +39,13 @@ abstract class Model
         $sql = "INSERT INTO `{$tableName}` ($keys) values ($values)";
         $sql = str_replace(', )', ')', $sql);
         Db::getInstance()->insert($sql, $params);
-        // $this->setId();
+        $this->setId();
     }
 
-    // protected function setId() : void
-    // {
-    //     $this->id = Db::getInstance()->getLastId();
-    // }
+    protected function setId() : void
+    {
+        $this->id = Db::getInstance()->getLastId();
+    }
 
     public function doDelete() : void
     {

@@ -10,6 +10,9 @@ class Users extends Model
 {
     private $login;
     private $pass;
+    protected $props = [
+        'login', 'pass'
+    ];
 
     public function __construct(string $login = null, string $pass = null)
     {

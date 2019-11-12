@@ -29,9 +29,7 @@ abstract class Model
         $values = "";
         $params = [];
         foreach ($this as $key => $value) {
-            if ($key === 'id') {
-                continue;
-            }
+            if(!in_array($key, $this->props)) continue;
             $params[":{$key}"] = $value;
             $keys .= "`{$key}`, ";
             $values .= ":{$key}, ";

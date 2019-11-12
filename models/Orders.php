@@ -13,6 +13,9 @@ class Orders extends Model
     protected $goods_id;
     protected $total_count;
     protected $total_price;
+    protected $props = [
+        'user_id', 'goods_id', 'total_count', 'total_price'
+    ];
 
     public function __construct(
         int $user_id = null,

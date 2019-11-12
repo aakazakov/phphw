@@ -13,6 +13,9 @@ class Product extends Model
     protected $description;
     protected $price;
     protected $image;
+    protected $props = [
+        'name', 'description', 'price', 'image'
+    ];
 
     public function __construct(
         string $name = null,

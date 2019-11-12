@@ -12,8 +12,10 @@ spl_autoload_register([new Autoload, 'LoadClass']);
 
 // $product = new Product('Пицца', 'Ассорти, 32см', 300);
 
-$product = Product::getOne(1);
+// $product = Product::getOne(71);
 
 // $product->doDelete();
 
-var_dump($product);
+// var_dump($product);
+
+// (new Product('Пицца', 'Ассорти, 32см', 300))->doInsert();

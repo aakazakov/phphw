@@ -14,7 +14,6 @@ class Basket extends Model
 
     public function __construct(int $session_id = null, int $goods_id = null)
     {
-        parent::__construct();
         $this->session_id = $session_id;
         $this->goods_id = $goods_id;
     }

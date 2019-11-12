@@ -14,7 +14,6 @@ class Users extends Model
 
     public function __construct(string $login = null, string $pass = null)
     {
-        parent::__construct();
         $this->login = $login;
         $this->pass = $pass;
     }

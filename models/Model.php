@@ -8,25 +8,18 @@ use app\engine\Db;
 
 abstract class Model
 {
-    private $db;
-
-    public function __construct()
-    {
-        $this->db = Db::getInstance();
-    }
-
     public function getOne(int $id) : array
     {
         $tableName = $this->getTableName();
         $sql = "SELECT * FROM `{$tableName}` WHERE id = :id";
-        return $this->db->queryOne($sql, [':id' => $id]);
+        return Db::getInstance()->queryOne($sql, [':id' => $id]);
     }
 
     public function getAll() : array
     {
         $tableName = $this->getTableName();
         $sql = "SELECT * FROM `{$tableName}`";
-        return $this->db->queryAll($sql);
+        return Db::getInstance()->queryAll($sql);
     }
 
     public function doInsert() : void
@@ -36,7 +29,7 @@ abstract class Model
         $values = "";
         $params = [];
         foreach ($this as $key => $value) {
-            if ($key === 'db' || $key === 'id') {
+            if ($key === 'id') {
                 continue;
             }
             $params[":{$key}"] = $value;
@@ -45,21 +38,20 @@ abstract class Model
         }
         $sql = "INSERT INTO `{$tableName}` ($keys) values ($values)";
         $sql = str_replace(', )', ')', $sql);
-        var_dump($sql); die();
-        $this->db->insert($sql, $params);
+        Db::getInstance()->insert($sql, $params);
         $this->setId();
     }
 
     protected function setId() : void
     {
-        $this->id = $this->db->getLastId();
+        $this->id = Db::getInstance()->getLastId();
     }
 
     public function doDelete() : void
     {
         $tableName = $this->getTableName();
         $sql = "DELETE FROM `{$tableName}` WHERE `id` = :id";
-        $this->db->delete($sql, [':id' => $this->id]);
+        Db::getInstance()->delete($sql, [':id' => $this->id]);
     }
 
     abstract public function getTableName();

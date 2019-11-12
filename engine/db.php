@@ -42,7 +42,7 @@ class Db
         $this->execute($sql, $params);
     }
 
-    public function getLastId()
+    public function getLastId() : float
     {
         return (float) $this->connection->lastInsertId();
     }

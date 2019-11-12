@@ -20,7 +20,6 @@ class Orders extends Model
         int $total_count = null,
         float $total_price = null
         ) {
-        parent::__construct();
         $this->$user_id = $user_id;
         $this->$goods_id = $goods_id;
         $this->$total_count = $total_count;

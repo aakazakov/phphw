@@ -22,11 +22,11 @@ class ProductController
 
     public function actionIndex()
     {
-        echo 'Ok';
+        echo 'Ok, index';
     }
 
     public function actionCard()
     {
-
+        echo 'Ok, card';
     }
 }

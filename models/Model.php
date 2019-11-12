@@ -30,7 +30,7 @@ abstract class Model
         foreach ($this as $key => $value) {
             if(!in_array($key, $this->props)) continue;
             $params[":{$key}"] = $value;
-            $keys[] = $key;
+            $keys[] = "`$key`";
         }
         $keys = implode(', ', $keys);
         $values = implode(', ', array_keys($params));

@@ -25,17 +25,16 @@ abstract class Model
     public function doInsert() : void
     {
         $tableName = static::getTableName();
-        $keys = "";
-        $values = "";
+        $keys = [];
         $params = [];
         foreach ($this as $key => $value) {
             if(!in_array($key, $this->props)) continue;
             $params[":{$key}"] = $value;
-            $keys .= "`{$key}`, ";
-            $values .= ":{$key}, ";
+            $keys[] = $key;
         }
-        $sql = "INSERT INTO `{$tableName}` ($keys) values ($values)";
-        $sql = str_replace(', )', ')', $sql);
+        $keys = implode(', ', $keys);
+        $values = implode(', ', array_keys($params));
+        $sql = "INSERT INTO `{$tableName}` ({$keys}) values ({$values})";
         Db::getInstance()->insert($sql, $params);
         $this->setId();
     }

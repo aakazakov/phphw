@@ -18,4 +18,4 @@ spl_autoload_register([new Autoload, 'LoadClass']);
 
 // var_dump($product);
 
-// (new Product('Пицца', 'Ассорти, 32см', 300))->doInsert();
+(new Product('Пицца', 'Ассорти, 32см', 300))->doInsert();

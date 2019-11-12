@@ -10,9 +10,19 @@ use app\engine\Autoload;
 
 spl_autoload_register([new Autoload, 'LoadClass']);
 
-$controllerName = $_GET['c'] ? : 'product';
-$controllerAction = $_GET['a'];
-$controllerClass = "app\\controller\\" . ucfirst($controllerName) . "Controller";
+$url = explode('/', $_SERVER['REQUEST_URI']);
+
+$controllerName = empty($url[1]) ? 'product' : $url[1];
+$actionName = $url[2];
+$controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
+
+if (class_exists($controllerClass)) {
+    $controller = new $controllerClass;
+    $controller->runAction($actionName);
+} else {
+    echo 'Bad news: 404 (no controller)';
+}
+
 var_dump($controllerClass);
 
 /*

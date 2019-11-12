@@ -10,12 +10,14 @@ use app\engine\Autoload;
 
 spl_autoload_register([new Autoload, 'LoadClass']);
 
-// $product = new Product('Пицца', 'Ассорти, 32см', 300);
+$product = new Product('Пицца', 'Ассорти, 32см', 300);
+$product->doInsert();
 
 // $product = Product::getOne(71);
 
-// $product->doDelete();
+$product->doDelete();
 
-// var_dump($product);
 
-(new Product('Пицца', 'Ассорти, 32см', 300))->doInsert();
+
+// (new Product('Пицца', 'Ассорти, 32см', 300))->doInsert();
+var_dump($product);

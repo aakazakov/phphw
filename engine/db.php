@@ -44,7 +44,7 @@ class Db
 
     public function getLastId() : float
     {
-        return (float) $this->connection->lastInsertId();   
+        return (float) $this->connection->lastInsertId();
     }
 
     public function execute(string $sql, array $params) : void

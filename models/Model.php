@@ -22,7 +22,7 @@ abstract class Model
         return Db::getInstance()->queryAll($sql);
     }
 
-    public function doInsert() : void
+    public function doInsert()
     {
         $tableName = static::getTableName();
         $keys = [];
@@ -37,6 +37,7 @@ abstract class Model
         $sql = "INSERT INTO `{$tableName}` ({$keys}) values ({$values})";
         Db::getInstance()->insert($sql, $params);
         $this->setId();
+        return $this;
     }
 
     protected function setId() : void
@@ -44,11 +45,12 @@ abstract class Model
         $this->id = Db::getInstance()->getLastId();
     }
 
-    public function doDelete() : void
+    public function doDelete()
     {
         $tableName = static::getTableName();
         $sql = "DELETE FROM `{$tableName}` WHERE `id` = :id";
         Db::getInstance()->delete($sql, [':id' => $this->id]);
+        return $this;
     }
 
     abstract public static function getTableName();

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace app\models;
 
-use app\models\Model;
+use app\models\DbModel;
 
-class Users extends Model
+class Users extends DbModel
 {
     private $login;
     private $pass;

@@ -11,13 +11,9 @@ use app\engine\Autoload;
 spl_autoload_register([new Autoload, 'LoadClass']);
 
 $product = new Product('Пицца', 'Ассорти, 32см', 300);
-$product->doInsert();
-
+$product->save();
+// $product->doDelete();
 // $product = Product::getOne(71);
-
-$product->doDelete();
-
-
 
 // (new Product('Пицца', 'Ассорти, 32см', 300))->doInsert();
 var_dump($product);

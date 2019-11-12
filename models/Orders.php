@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace app\models;
 
-use app\models\Model;
+use app\models\DbModel;
 
-class Orders extends Model
+class Orders extends DbModel
 {
     protected $id;
     protected $user_id;

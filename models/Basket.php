@@ -18,7 +18,7 @@ class Basket extends Model
         $this->goods_id = $goods_id;
     }
 
-    public function getTableName() : string
+    public static function getTableName() : string
     {
         return 'goods';
     }

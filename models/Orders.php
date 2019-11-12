@@ -26,7 +26,7 @@ class Orders extends Model
         $this->$total_price = $total_price;
     }
 
-    public function getTableName() : string
+    public static function getTableName() : string
     {
         return 'orders';
     }

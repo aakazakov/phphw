@@ -8,7 +8,6 @@ use app\models\Model;
 
 class Users extends Model
 {
-    private $id;
     private $login;
     private $pass;
 
@@ -18,7 +17,7 @@ class Users extends Model
         $this->pass = $pass;
     }
 
-    public function getTableName() : string
+    public static function getTableName() : string
     {
         return 'users';
     }

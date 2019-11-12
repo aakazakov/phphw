@@ -42,12 +42,12 @@ class Db
         $this->execute($sql, $params);
     }
 
-    public function getLastId() : float
-    {
-        return (float) $this->connection->lastInsertId();
-    }
+    // public function getLastId() : float
+    // {
+    //     return (float) $this->connection->lastInsertId();   
+    // }
 
-    private function execute(string $sql, array $params) : void
+    public function execute(string $sql, array $params) : void
     {
         $this->query($sql, $params);
     }
@@ -57,6 +57,13 @@ class Db
         $pdoStatement = $this->getConnection()->prepare($sql);
         $pdoStatement->execute($params);
         return $pdoStatement;
+    }
+
+    public function queryObject(string $sql, array $params, $className)
+    {
+        $pdoStatement = $this->query($sql, $params);
+        $pdoStatement->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $className);
+        return $pdoStatement->fetch();
     }
 
     private function getConnection() : PDO

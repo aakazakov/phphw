@@ -20,7 +20,7 @@ class Product extends Model
         $this->price = $price;
     }
 
-    public function getTableName() : string
+    public static function getTableName() : string
     {
         return 'goods';
     }

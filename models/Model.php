@@ -8,23 +8,23 @@ use app\engine\Db;
 
 abstract class Model
 {
-    public function getOne(int $id) : array
+    public static function getOne(int $id)
     {
-        $tableName = $this->getTableName();
+        $tableName = static::getTableName();
         $sql = "SELECT * FROM `{$tableName}` WHERE id = :id";
-        return Db::getInstance()->queryOne($sql, [':id' => $id]);
+        return Db::getInstance()->queryObject($sql, [':id' => $id], static::class);
     }
 
-    public function getAll() : array
+    public static function getAll() : array
     {
-        $tableName = $this->getTableName();
+        $tableName = static::getTableName();
         $sql = "SELECT * FROM `{$tableName}`";
         return Db::getInstance()->queryAll($sql);
     }
 
     public function doInsert() : void
     {
-        $tableName = $this->getTableName();
+        $tableName = static::getTableName();
         $keys = "";
         $values = "";
         $params = [];
@@ -39,20 +39,20 @@ abstract class Model
         $sql = "INSERT INTO `{$tableName}` ($keys) values ($values)";
         $sql = str_replace(', )', ')', $sql);
         Db::getInstance()->insert($sql, $params);
-        $this->setId();
+        // $this->setId();
     }
 
-    protected function setId() : void
-    {
-        $this->id = Db::getInstance()->getLastId();
-    }
+    // protected function setId() : void
+    // {
+    //     $this->id = Db::getInstance()->getLastId();
+    // }
 
     public function doDelete() : void
     {
-        $tableName = $this->getTableName();
+        $tableName = static::getTableName();
         $sql = "DELETE FROM `{$tableName}` WHERE `id` = :id";
         Db::getInstance()->delete($sql, [':id' => $this->id]);
     }
 
-    abstract public function getTableName();
+    abstract public static function getTableName();
 }

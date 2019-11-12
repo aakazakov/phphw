@@ -12,6 +12,13 @@ class Users extends Model
     private $login;
     private $pass;
 
+    public function __construct(string $login = null, string $pass = null)
+    {
+        parent::__construct();
+        $this->login = $login;
+        $this->pass = $pass;
+    }
+
     public function getTableName() : string
     {
         return 'users';

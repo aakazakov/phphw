@@ -45,6 +45,7 @@ abstract class Model
         }
         $sql = "INSERT INTO `{$tableName}` ($keys) values ($values)";
         $sql = str_replace(', )', ')', $sql);
+        var_dump($sql); die();
         $this->db->insert($sql, $params);
         $this->setId();
     }

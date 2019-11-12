@@ -44,9 +44,6 @@ class Db
 
     public function getLastId()
     {
-        if (is_null($this->connection)) {
-            $this->connection = $this->getConnection();
-        }
         return (float) $this->connection->lastInsertId();
     }
 

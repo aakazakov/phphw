@@ -13,7 +13,7 @@ class Product extends Model
     protected $description;
     protected $price;
 
-    public function __construct(string $name, string $description, float $price)
+    public function __construct(string $name = null, string $description = null, float $price = null)
     {
         parent::__construct();
         $this->name = $name;

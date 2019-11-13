@@ -23,8 +23,6 @@ if (class_exists($controllerClass)) {
     echo 'Bad news: 404 (no controller)';
 }
 
-var_dump($controllerClass);
-
 /*
 $product = new Product('Пицца', 'Ассорти, 32см', 300);
 $product->save();

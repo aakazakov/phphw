@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace app\controller;
 
+use app\models\Product;
+
 class ProductController
 {
     private $action;
@@ -16,17 +18,29 @@ class ProductController
         if (method_exists($this, $method)) {
             $this->$method();
         } else {
-            echo 'Bad news: 404 (no action)';
-        } 
+            echo 'Bad news: 404 (no action)'; 
+        }
+    }
+
+    public function renderTemplate($templateName)
+    {
+        ob_start;
+        $templatePath = TEMPLATES_DIR . $templateName . '.php';
+        if (file_exists($templatePath)) {
+            include $templatePath;
+        }
+        return ob_get_clean;       
     }
 
     public function actionIndex()
     {
-        echo 'Ok, index';
+        include '../templates/catalog.php';
     }
 
     public function actionCard()
     {
-        echo 'Ok, card';
+        $id = (int) $_GET['id'];
+        $product = Product::getOne($id);
+        include '../templates/card.php';
     }
 }

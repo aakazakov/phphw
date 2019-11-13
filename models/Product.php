@@ -9,11 +9,11 @@ use app\models\DbModel;
 class Product extends DbModel
 {
     protected $id;
-    protected $name;
-    protected $description;
-    protected $price;
-    protected $image;
-    protected $props = [
+    public $name;
+    public $description;
+    public $price;
+    public $image;
+    public $props = [
         'name', 'description', 'price', 'image'
     ];
 

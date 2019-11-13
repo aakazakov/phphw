@@ -10,6 +10,8 @@ class ProductController
 {
     private $action;
     private $defaultAction = 'index';
+    private $layout = 'main';
+    private $useLayout = true;
 
     public function runAction($action = null)
     {
@@ -22,25 +24,45 @@ class ProductController
         }
     }
 
-    public function renderTemplate($templateName)
+    public function render($templateName, $params = [])
+    {
+        if ($this->useLayout) {
+            return $this->renderTemplate( "layouts/{$this->layout}", [
+                    'menu' => $this->renderTemplate('menu'),
+                    'content' => $this->renderTemplate($templateName, $params)
+                ]
+            );
+        } else {
+            return $this->renderTemplate($templateName, $params = []);
+        }
+    }
+
+    public function renderTemplate($templateName, $params = [])
     {
         ob_start;
+        extract($params);
         $templatePath = TEMPLATES_DIR . $templateName . '.php';
         if (file_exists($templatePath)) {
             include $templatePath;
         }
-        return ob_get_clean;       
+        ob_get_clean;
     }
 
     public function actionIndex()
     {
-        include '../templates/catalog.php';
+        echo $this->render('index');
+    }
+
+    public function actionCatalog()
+    {
+        $catalog = Product::getAll();
+        echo $this->render('catalog', ['catalog' => $catalog]);
     }
 
     public function actionCard()
     {
         $id = (int) $_GET['id'];
         $product = Product::getOne($id);
-        include '../templates/card.php';
+        echo $this->render('card', ['product' => $product]);
     }
 }

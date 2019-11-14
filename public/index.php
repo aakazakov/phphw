@@ -6,7 +6,8 @@ include realpath('../engine/Autoload.php');
 include realpath('../config/config.php');
 
 use app\engine\Autoload;
+use app\controller\ApplyController;
 
 spl_autoload_register([new Autoload, 'LoadClass']);
 
-applyController($url);
+(new ApplyController)->applyController($url);

@@ -6,7 +6,7 @@ namespace app\controller;
 
 class ApplyController
 {
-    public function applyController($url) : void
+    public function applyController($url = null) : void
     {
         $url = explode('/', $_SERVER['REQUEST_URI']);
         $controllerName = empty($url[1]) ? 'product' : $url[1];

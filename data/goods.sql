@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 06 2019 г., 18:45
+-- Время создания: Ноя 14 2019 г., 23:43
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.1.32
 
@@ -32,16 +32,20 @@ CREATE TABLE `goods` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `price` float NOT NULL
+  `price` float NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `goods`
 --
 
-INSERT INTO `goods` (`id`, `name`, `description`, `price`) VALUES
-(1, 'Чай', 'Зеленый, Китай', 150),
-(2, 'Кофе', 'Зерно, средняя обжарка, Бразилия', 250);
+INSERT INTO `goods` (`id`, `name`, `description`, `price`, `image`) VALUES
+(1, 'Чай Зеленый', 'Крупнолистовой, Китай', 150, ''),
+(2, 'Кофе', 'Зерно, средняя обжарка, Бразилия', 250, ''),
+(91, 'Чай Черный', 'Цейлон', 123, NULL),
+(93, 'Пуэр', '2013г, Китай', 140, NULL),
+(94, 'Кофе2', 'Робуста, Бразилия', 323, NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -61,7 +65,7 @@ ALTER TABLE `goods`
 -- AUTO_INCREMENT для таблицы `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

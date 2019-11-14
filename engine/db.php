@@ -37,6 +37,11 @@ class Db
         $this->execute($sql, $params);
     }
 
+    public function update(string $sql, array $params) : void
+    {
+        $this->execute($sql, $params);
+    }
+
     public function delete(string $sql, array $params) : void
     {
         $this->execute($sql, $params);

@@ -13,7 +13,7 @@ class Product extends DbModel
     public $description;
     public $price;
     public $image;
-    public $props = [
+    protected $props = [
         'name', 'description', 'price', 'image'
     ];
 

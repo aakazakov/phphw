@@ -36,8 +36,8 @@ abstract class DbModel extends Model
         $params = [];
         foreach ($this as $key => $value) {
             if(!in_array($key, $this->props)) continue;
-            $params[":{$key}"] = $value;
             $keys[] = "`$key`";
+            $params[":{$key}"] = $value;
         }
         $keys = implode(', ', $keys);
         $values = implode(', ', array_keys($params));
@@ -54,12 +54,19 @@ abstract class DbModel extends Model
 
     public function doUpdate()
     {
-        // TODO соответствуют ли измененные значения значениям в БД;
-        $changes = '';
         $tableName = static::getTableName();
-        $sql = "UPDATE `{$tableName}` SET {$changes}  WHERE `id` = :id";
-
-        var_dump($this);
+        $changedFields = [];
+        $params = [':id' => $this->id];
+        foreach($this as $key => $value) {
+            if(!in_array($key, $this->props)) continue;
+            if ($value != Product::getOne((int)$this->id)->$key) {
+                $changedFields[] = "`$key` = :{$key}";
+                $params[":{$key}"] = $value;
+            };
+        }
+        $changedFields = implode(', ', $changedFields);
+        $sql = "UPDATE `{$tableName}` SET {$changedFields}  WHERE `id` = :id";
+        Db::getInstance()->update($sql, $params);
     }
 
     public function doDelete()

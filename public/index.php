@@ -14,5 +14,5 @@ spl_autoload_register([new Autoload, 'LoadClass']);
 (new ApplyController)->applyController($url);
 
 $product = Product::getOne(93);
-$product->price = 200;
-$product->doUpdate();
+$product->price = 140.00;
+$product->save();

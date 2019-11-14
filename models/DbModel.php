@@ -54,7 +54,12 @@ abstract class DbModel extends Model
 
     public function doUpdate()
     {
-        
+        // TODO соответствуют ли измененные значения значениям в БД;
+        $changes = '';
+        $tableName = static::getTableName();
+        $sql = "UPDATE `{$tableName}` SET {$changes}  WHERE `id` = :id";
+
+        var_dump($this);
     }
 
     public function doDelete()

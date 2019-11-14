@@ -7,7 +7,12 @@ include realpath('../config/config.php');
 
 use app\engine\Autoload;
 use app\controller\ApplyController;
+use app\models\Product;
 
 spl_autoload_register([new Autoload, 'LoadClass']);
 
 (new ApplyController)->applyController($url);
+
+$product = Product::getOne(93);
+$product->price = 200;
+$product->doUpdate();

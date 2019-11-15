@@ -37,9 +37,10 @@ class Db
         return (float) $this->connection->lastInsertId();
     }
 
-    public function execute(string $sql, array $params) : void
+    public function execute(string $sql, array $params)
     {
         $this->query($sql, $params);
+        return $this;
     }
 
     private function query(string $sql, array $params)

@@ -43,13 +43,8 @@ abstract class DbModel extends Model
         $values = implode(', ', array_keys($params));
         $sql = "INSERT INTO `{$tableName}` ({$keys}) values ({$values})";
         Db::getInstance()->execute($sql, $params);
-        $this->setId();
-        return $this;
-    }
-
-    protected function setId() : void
-    {
         $this->id = Db::getInstance()->getLastId();
+        return $this;
     }
 
     public function doUpdate()

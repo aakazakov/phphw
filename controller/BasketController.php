@@ -37,13 +37,13 @@ class BasketController
 
     public function renderTemplate($templateName, $params = [])
     {
-        ob_start;
+        ob_start();
         extract($params);
         $templatePath = TEMPLATES_DIR . $templateName . '.php';
         if (file_exists($templatePath)) {
             include $templatePath;
         }
-        ob_get_clean;
+        return ob_get_clean();
     }
 
     public function actionEmptyBasket()

@@ -26,7 +26,7 @@ abstract class DbModel extends Model
     public function save()
     {
         is_null($this->id) ? $this->doInsert() : $this->doUpdate();
-        return this;
+        return $this;
     }
 
     public function doInsert()

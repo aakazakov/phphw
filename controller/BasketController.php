@@ -12,13 +12,11 @@ class BasketController  extends Controller
     
     public function actionEmptyBasket() : void
     {
-        echo $this->render('basket');
-        echo 'Ваша корзина пуста';
+        echo $this->render('emptyBasket');
     }
 
     public function actionOrders() : void
     {
         echo $this->render('basket');
-        echo 'Ваши заказы:';
     }
 }

@@ -10,13 +10,13 @@ class BasketController  extends Controller
 {
     protected $defaultAction = 'emptyBasket';
     
-    public function actionEmptyBasket()
+    public function actionEmptyBasket() : void
     {
         echo $this->render('basket');
         echo 'Ваша корзина пуста';
     }
 
-    public function actionOrders()
+    public function actionOrders() : void
     {
         echo $this->render('basket');
         echo 'Ваши заказы:';

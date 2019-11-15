@@ -11,18 +11,18 @@ class ProductController extends Controller
 {
     protected $defaultAction = 'index';
     
-    public function actionIndex()
+    public function actionIndex() : void
     {
         echo $this->render('index');
     }
 
-    public function actionCatalog()
+    public function actionCatalog() : void
     {
         $catalog = Product::getAll();
         echo $this->render('catalog', ['catalog' => $catalog]);
     }
 
-    public function actionCard()
+    public function actionCard() : void
     {
         $id = (int) $_GET['id'];
         $product = Product::getOne($id);

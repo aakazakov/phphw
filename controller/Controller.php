@@ -10,7 +10,7 @@ class Controller
     protected $layout = 'main';
     protected $useLayout = true;
 
-    public function runAction($action = null)
+    public function runAction($action = null) : void
     {
         $this->action = $action ? : $this->defaultAction;
         $method = 'action' . ucfirst($this->action);

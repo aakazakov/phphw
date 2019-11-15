@@ -42,7 +42,7 @@ abstract class DbModel extends Model
         $keys = implode(', ', $keys);
         $values = implode(', ', array_keys($params));
         $sql = "INSERT INTO `{$tableName}` ({$keys}) values ({$values})";
-        Db::getInstance()->insert($sql, $params);
+        Db::getInstance()->execute($sql, $params);
         $this->setId();
         return $this;
     }
@@ -67,14 +67,14 @@ abstract class DbModel extends Model
         }
         $changedFields = implode(', ', $changedFields);
         $sql = "UPDATE `{$tableName}` SET {$changedFields}  WHERE `id` = :id";
-        Db::getInstance()->update($sql, $params);
+        Db::getInstance()->execute($sql, $params);
     }
 
     public function doDelete()
     {
         $tableName = static::getTableName();
         $sql = "DELETE FROM `{$tableName}` WHERE `id` = :id";
-        Db::getInstance()->delete($sql, [':id' => $this->id]);
+        Db::getInstance()->execute($sql, [':id' => $this->id]);
         return $this;
     }
 

@@ -17,6 +17,8 @@ class Product extends DbModel
         'name', 'description', 'price', 'image'
     ];
 
+    public $clone;
+
     public function __construct(
         string $name = null,
         string $description = null,

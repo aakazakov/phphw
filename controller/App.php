@@ -8,11 +8,6 @@ class App
 {
     public static function Run() : void
     {
-        static::applyController();
-    }
-
-    private static function applyController() : void
-    {
         $url = explode('/', $_SERVER['REQUEST_URI']);
         $controllerName = empty($url[1]) ? 'product' : $url[1];
         $actionName = empty($url[2]) ? '' : $url[2];

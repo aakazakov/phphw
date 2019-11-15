@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace app\controller;
 
-class ApplyController
+class App
 {
-    public function applyController($url = null) : void
+    public static function Run() : void
+    {
+        static::applyController();
+    }
+
+    private static function applyController($url = null) : void
     {
         $url = explode('/', $_SERVER['REQUEST_URI']);
+        var_dump($url);
         $controllerName = empty($url[1]) ? 'product' : $url[1];
-        $actionName = $url[2];
+        $actionName = empty($url[2]) ? '' : $url[2]; // Иначе выдаёт предупреждение
         $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
         if (class_exists($controllerClass)) {
             $controller = new $controllerClass;

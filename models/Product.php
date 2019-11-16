@@ -9,13 +9,14 @@ use app\models\DbModel;
 class Product extends DbModel
 {
     protected $id;
-    public $name;
-    public $description;
-    public $price;
-    public $image;
+    protected $name;
+    protected $description;
+    protected $price;
+    protected $image;
     protected $props = [
         'name', 'description', 'price', 'image'
     ];
+    protected $changedProps = [];
 
     public $clone;
 
@@ -34,5 +35,21 @@ class Product extends DbModel
     public static function getTableName() : string
     {
         return 'goods';
+    }
+
+    public function __set($property, $value)
+    {
+        if (property_exists($this, $property)) {
+            if ($this->$property != $value) {
+                $this->changedProps[$property] = $value;
+            }
+        }
+    }
+
+    public function __get($property)
+    {
+        if (property_exists($this, $property)) {
+            return $this->$property;
+        }    
     }
 }

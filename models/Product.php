@@ -16,10 +16,7 @@ class Product extends DbModel
     protected $props = [
         'name', 'description', 'price', 'image'
     ];
-    protected $changedProps = [];
-
-    public $clone;
-
+    
     public function __construct(
         string $name = null,
         string $description = null,
@@ -37,19 +34,19 @@ class Product extends DbModel
         return 'goods';
     }
 
-    public function __set($property, $value)
-    {
-        if (property_exists($this, $property)) {
-            if ($this->$property != $value) {
-                $this->changedProps[$property] = $value;
-            }
-        }
-    }
+    // public function __set($property, $value)
+    // {
+    //     if (property_exists($this, $property)) {
+    //         if ($this->$property != $value) {
+    //             $this->changedProps[$property] = $value;
+    //         }
+    //     }
+    // }
 
-    public function __get($property)
-    {
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }    
-    }
+    // public function __get($property)
+    // {
+    //     if (property_exists($this, $property)) {
+    //         return $this->$property;
+    //     }    
+    // }
 }

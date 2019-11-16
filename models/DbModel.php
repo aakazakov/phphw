@@ -49,21 +49,20 @@ abstract class DbModel extends Model
 
     public function doUpdate()
     {
-        // TODO __Clone ???
-        // $tableName = static::getTableName();
-        // $changedFields = [];
-        // $params = [':id' => $this->id];
-        // foreach($this as $key => $value) {
-        //     if(in_array($key, $this->props)) {
-        //         if ($value != Product::getOne((int)$this->id)->$key) {
-        //             $changedFields[] = "`$key` = :{$key}";
-        //             $params[":{$key}"] = $value;
-        //         }
-        //     }
-        // }
-        // $changedFields = implode(', ', $changedFields);
-        // $sql = "UPDATE `{$tableName}` SET {$changedFields}  WHERE `id` = :id";
-        // Db::getInstance()->execute($sql, $params);
+        $tableName = static::getTableName();
+        $changedFields = [];
+        $params = [':id' => $this->id];
+        if (!empty($this->setProperties)) {
+            foreach($this->setProperties as $key => $value) {
+                if(in_array($key, $this->props)) {
+                    $changedFields[] = "`$key` = :{$key}";
+                    $params[":{$key}"] = $value;
+                }
+            }
+            $changedFields = implode(', ', $changedFields);
+            $sql = "UPDATE `{$tableName}` SET {$changedFields}  WHERE `id` = :id";
+            Db::getInstance()->execute($sql, $params);
+        }
     }
 
     public function doDelete()

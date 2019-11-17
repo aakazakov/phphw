@@ -59,19 +59,15 @@ class Db
 
     private function getConnection() : PDO
     {
-        try {
-            if (is_null($this->connection)) {
-                $this->connection = new PDO(
-                    $this->prepareDSNString(),
-                    $this->config['login'],
-                    $this->config['password']
-                );
-                $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            }
-            return $this->connection;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
+        if (is_null($this->connection)) {
+            $this->connection = new PDO(
+                $this->prepareDSNString(),
+                $this->config['login'],
+                $this->config['password']
+            );
+            $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         }
+        return $this->connection;
     }
 
     private function prepareDSNString() : string

@@ -32,9 +32,9 @@ class Db
         return $this->query($sql, $params)->fetchAll();
     }
 
-    public function getLastId() : float
+    public function getLastId() : int
     {
-        return (float) $this->connection->lastInsertId();
+        return (int) $this->connection->lastInsertId();
     }
 
     public function execute(string $sql, array $params)

@@ -14,7 +14,10 @@ class Product extends DbModel
     protected $price;
     protected $image;
     protected $props = [
-        'name', 'description', 'price', 'image'
+        'name' => 0,
+        'description' => 0,
+        'price' => 0,
+        'image' => 0
     ];
     
     public function __construct(
@@ -33,20 +36,4 @@ class Product extends DbModel
     {
         return 'goods';
     }
-
-    // public function __set($property, $value)
-    // {
-    //     if (property_exists($this, $property)) {
-    //         if ($this->$property != $value) {
-    //             $this->changedProps[$property] = $value;
-    //         }
-    //     }
-    // }
-
-    // public function __get($property)
-    // {
-    //     if (property_exists($this, $property)) {
-    //         return $this->$property;
-    //     }    
-    // }
 }

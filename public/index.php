@@ -14,5 +14,7 @@ spl_autoload_register([new Autoload, 'LoadClass']);
 App::Run();
 
 // $prod = Product::getOne(2);
-// $prod->price = 250;
+// $prod->price = 240;
 // $prod->save();
+// var_dump($prod, isset($prod->price));
+// var_dump($prod);

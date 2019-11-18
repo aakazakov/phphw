@@ -6,15 +6,16 @@ namespace app\models;
 
 abstract class Model
 {
-    protected $setProperties = [];
     protected $props = [];
 
     public function __set($property, $value)
     {
-        if (property_exists($this, $property)) {
-            if ($this->$property != $value) {
-                $this->setProperties[$property] = $value;
-            }
+        if (
+            array_key_exists($property, $this->props)
+            && $value != $this->$property
+        ) {
+            $this->$property = $value;
+            $this->props[$property] = 1;
         }
     }
 

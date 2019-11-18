@@ -9,8 +9,6 @@ use app\controller\Controller;
 
 class ProductController extends Controller
 {
-    protected $defaultAction = 'index';
-    
     public function actionIndex() : void
     {
         echo $this->render('index');

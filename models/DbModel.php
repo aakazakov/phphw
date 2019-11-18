@@ -56,10 +56,12 @@ abstract class DbModel extends Model
             if ($value !== 1) continue;
             $changedFields[] = "`$key` = :{$key}";
             $params[":{$key}"] = $this->$key;
+            $this->props[$key] = 0;
         }
         $changedFields = implode(', ', $changedFields);
         $sql = "UPDATE `{$tableName}` SET {$changedFields}  WHERE `id` = :id";
         Db::getInstance()->execute($sql, $params);
+        return $this;
     }
 
     public function doDelete()

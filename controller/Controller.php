@@ -9,6 +9,7 @@ class Controller
     protected $action;
     protected $layout = 'main';
     protected $useLayout = true;
+    protected $defaultAction = 'index';
 
     public function runAction($action = null) : void
     {

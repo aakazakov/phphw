@@ -52,17 +52,14 @@ abstract class DbModel extends Model
         $tableName = static::getTableName();
         $changedFields = [];
         $params = [':id' => $this->id];
-        if (!empty($this->setProperties)) {
-            foreach($this->setProperties as $key => $value) {
-                if(in_array($key, $this->props)) {
-                    $changedFields[] = "`$key` = :{$key}";
-                    $params[":{$key}"] = $value;
-                }
-            }
-            $changedFields = implode(', ', $changedFields);
-            $sql = "UPDATE `{$tableName}` SET {$changedFields}  WHERE `id` = :id";
-            Db::getInstance()->execute($sql, $params);
+        foreach ($this->props as $key => $value) {
+            if ($value !== 1) continue;
+            $changedFields[] = "`$key` = :{$key}";
+            $params[":{$key}"] = $this->$key;
         }
+        $changedFields = implode(', ', $changedFields);
+        $sql = "UPDATE `{$tableName}` SET {$changedFields}  WHERE `id` = :id";
+        Db::getInstance()->execute($sql, $params);
     }
 
     public function doDelete()

@@ -12,8 +12,7 @@ use app\models\Product;
 spl_autoload_register([new Autoload, 'LoadClass']);
 
 App::Run();
-// $prod = new Product('test', 'test', 123);
+
 // $prod = Product::getOne(2);
-// $prod->image = 240;
+// $prod->price = 250;
 // $prod->save();
-// var_dump($prod->image);

@@ -4,12 +4,20 @@ declare(strict_types=1);
 
 namespace app\controller;
 
+use app\engine\Render;
+
 class Controller
 {
     protected $action;
     protected $layout = 'main';
     protected $useLayout = true;
     protected $defaultAction = 'index';
+    protected $renderer;
+
+    public function __construct()
+    {
+        $this->renderer = new Render;
+    }
 
     public function runAction($action = null) : void
     {
@@ -37,12 +45,6 @@ class Controller
 
     public function renderTemplate($templateName, $params = [])
     {
-        ob_start();
-        extract($params);
-        $templatePath = TEMPLATES_DIR . $templateName . '.php';
-        if (file_exists($templatePath)) {
-            include $templatePath;
-        }
-        return ob_get_clean();
+        return $this->renderer->renderTemplate($templateName, $params);
     }
 }

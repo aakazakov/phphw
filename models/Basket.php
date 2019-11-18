@@ -25,4 +25,9 @@ class Basket extends DbModel
     {
         return 'goods';
     }
+
+    public static function getBasket($session_id)
+    {
+        // return basket
+    }
 }

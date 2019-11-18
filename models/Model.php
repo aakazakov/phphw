@@ -21,8 +21,11 @@ abstract class Model
 
     public function __get($property)
     {
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }    
+        return $this->$property;
+    }
+
+    public function __isset($property)
+    {
+        return isset($this->$property);
     }
 }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace app\controller;
 
-use app\engine\Render;
+use app\interfaces\IRenderer;
 
-class Controller
+class Controller implements IRenderer
 {
     protected $action;
     protected $layout = 'main';
@@ -14,9 +14,9 @@ class Controller
     protected $defaultAction = 'index';
     protected $renderer;
 
-    public function __construct()
+    public function __construct(IRenderer $renderer)
     {
-        $this->renderer = new Render;
+        $this->renderer = $renderer;
     }
 
     public function runAction($action = null) : void

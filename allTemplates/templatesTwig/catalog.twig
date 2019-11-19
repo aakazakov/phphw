@@ -1,1 +1,10 @@
-каталог
+<h2>Каталог</h2>
+<section style="display: grid; grid-template-columns: repeat(5, 1fr); grid-gap: 5px;">
+    {% for item in catalog %}
+        <div style="display: flex; justify-content: center; padding: 5px; background-color: grey;">
+            <a href="/product/card/?id={{ item.id }}>">
+                <img src="https://placehold.co/180?text={{ item.name }}">
+            </a>
+        </div>
+    {% endfor %}
+</section>

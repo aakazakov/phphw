@@ -33,7 +33,7 @@ class Controller implements IRenderer
     public function render($templateName, $params = [])
     {
         if ($this->useLayout) {
-            return $this->renderTemplate( "layouts/{$this->layout}", [
+            return $this->renderTemplate("layouts/{$this->layout}", [
                     'menu' => $this->renderTemplate('menu'),
                     'content' => $this->renderTemplate($templateName, $params)
                 ]

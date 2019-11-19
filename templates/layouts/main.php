@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop</title>
 </head>
-<body>
+<body style="padding: 1vw;">
     <?=$menu?>
     <?=$content?>
 </body>

@@ -8,5 +8,8 @@ use app\interfaces\IRenderer;
 
 class TwigRender implements IRenderer
 {
-    
+    public function renderTemplate($templateName, $params = [])
+    {
+        
+    }
 }

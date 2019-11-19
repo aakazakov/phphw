@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\engine;
 
-use app\engine\Render;
+use app\engine\{Render, TwigRender};
 
 class App
 {

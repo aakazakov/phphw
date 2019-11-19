@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace app\engine;
 
-class Render
+use app\interfaces\IRenderer;
+
+class Render implements IRenderer
 {
     public function renderTemplate($templateName, $params = [])
     {

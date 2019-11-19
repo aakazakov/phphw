@@ -7,6 +7,17 @@
     <title>Shop</title>
 </head>
 <body style="padding: 1vw;">
+    <?if ($auth):?>
+        Привет <?=$username?>
+        <a style="padding: 2px 5px; background-color: lightgray; text-decoration:none"
+        href="/user/logout/">Выход</a>
+    <?else:?>
+        <form action="/user/login/" method="POST">
+            <input type="text" name="login" placeholder="Логин">
+            <input type="text" name="pass" placeholder="Пароль">
+            <input type="submit" name="submit" value="Войти">
+        </form>
+    <?endif;?><hr>
     <?=$menu?>
     <?=$content?>
 </body>

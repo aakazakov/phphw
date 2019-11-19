@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+session_start();
+
 include realpath('../engine/Autoload.php');
 include realpath('../config/config.php');
 include realpath('../vendor/autoload.php');

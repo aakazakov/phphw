@@ -15,7 +15,7 @@ class App
         $actionName = empty($url[2]) ? '' : $url[2];
         $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
         if (class_exists($controllerClass)) {
-            $controller = new $controllerClass(new Render);
+            $controller = new $controllerClass(new TwigRender);
             $controller->runAction($actionName);
         } else {
             echo 'Bad news: 404 (no controller)';

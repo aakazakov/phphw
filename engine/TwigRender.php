@@ -10,13 +10,19 @@ use \Twig\Environment;
 
 class TwigRender implements IRenderer
 {
+    private $twig;
+
+    public function __construct()
+    {
+        $loader = new FilesystemLoader(TWIG_TEMPLATES_DIR);
+        $this->twig = new Environment($loader);
+    }
+
     public function renderTemplate($templateName, $params = [])
     {
         $templateName .= '.twig';
         if (file_exists(TWIG_TEMPLATES_DIR . $templateName)) {
-            $loader = new FilesystemLoader(TWIG_TEMPLATES_DIR);
-            $twig = new Environment($loader);
-            return $twig->render($templateName, $params);
+            return $this->twig->render($templateName, $params);
         }
     }
 }

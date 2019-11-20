@@ -26,6 +26,11 @@ class Users extends DbModel
         return isset($_SESSION['login']);
     }
 
+    public static function getName() : string
+    {
+        return $_SESSION['login'];
+    }
+
     public static function getTableName() : string
     {
         return 'users';

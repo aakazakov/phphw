@@ -38,7 +38,7 @@ class Controller implements IRenderer
                     'menu' => $this->renderTemplate('menu'),
                     'content' => $this->renderTemplate($templateName, $params),
                     'auth' => Users::isAuth(),
-                    'username' => 'admin'
+                    'username' => Users::getName()
                 ]
             );
         } else {

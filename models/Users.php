@@ -26,7 +26,7 @@ class Users extends DbModel
         return isset($_SESSION['login']);
     }
 
-    public static function getName() : string
+    public static function getName()
     {
         return $_SESSION['login'];
     }

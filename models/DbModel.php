@@ -9,7 +9,7 @@ use app\models\Model;
 
 abstract class DbModel extends Model
 {
-    public static function getOne(int $id) : object
+    public static function getOne(int $id)
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM `{$tableName}` WHERE id = :id";

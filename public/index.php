@@ -13,8 +13,7 @@ use app\models\Product;
 
 spl_autoload_register([new Autoload, 'LoadClass']);
 
-$request = new Request();
-App::Run($request);
+App::Run();
 
 // $prod = Product::getOne(2);
 // $prod->price = 290;

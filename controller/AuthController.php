@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace app\controller;
 
 use app\controller\Controller;
+use app\engine\Request;
 use app\models\Users;
 
 class AuthController extends Controller
 {
     public function actionLogin()
     {
-        $login = $_POST['login'];
-        $pass = $_POST['pass'];
+        $login = (new Request)->getParams()['login'];
+        $pass = (new Request)->getParams()['pass'];
         if (!Users::auth($login, $pass)) {
             die('Неверный логин/пароль');
         } else {

@@ -23,7 +23,7 @@ abstract class DbModel extends Model
         return Db::getInstance()->queryAll($sql);
     }
 
-    public static function getWhereOne($field, $value) : object
+    public static function getWhere($field, $value)
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM {$tableName} WHERE {$field} = :value";

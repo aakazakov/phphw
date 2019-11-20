@@ -31,6 +31,15 @@ class Users extends DbModel
         return $_SESSION['login'];
     }
 
+    public static function auth($login, $pass)
+    {
+        $user = static::getWhere('login', $login);
+        if ($pass == $user->pass) {
+            $_SESSION['login'] = $login;
+            return true;
+        }
+    }
+
     public static function getTableName() : string
     {
         return 'users';

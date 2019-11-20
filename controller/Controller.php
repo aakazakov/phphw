@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace app\controller;
 
 use app\interfaces\IRenderer;
+use app\models\Users;
 
 class Controller implements IRenderer
 {
@@ -36,8 +37,8 @@ class Controller implements IRenderer
             return $this->renderTemplate("layouts/{$this->layout}", [
                     'menu' => $this->renderTemplate('menu'),
                     'content' => $this->renderTemplate($templateName, $params),
-                    'auth' => false,
-                    'username' => ''
+                    'auth' => Users::isAuth(),
+                    'username' => 'admin'
                 ]
             );
         } else {

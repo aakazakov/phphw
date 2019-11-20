@@ -9,7 +9,7 @@ use app\models\Model;
 
 abstract class DbModel extends Model
 {
-    public static function getOne(int $id)
+    public static function getOne(int $id) : object
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM `{$tableName}` WHERE id = :id";
@@ -21,6 +21,13 @@ abstract class DbModel extends Model
         $tableName = static::getTableName();
         $sql = "SELECT * FROM `{$tableName}`";
         return Db::getInstance()->queryAll($sql);
+    }
+
+    public static function getWhere($field, $value) : object
+    {
+        $tableName = static::getTableName();
+        $sql = "SELECT * FROM {$tableName} WHERE {$field} = :value";
+        return Db::getInstance()->queryObject($sql, ["value" => $value], static::class);
     }
 
     public function save()

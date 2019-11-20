@@ -8,8 +8,9 @@ use app\models\DbModel;
 
 class Users extends DbModel
 {
-    private $login;
-    private $pass;
+    protected $id;
+    protected $login;
+    protected $pass;
     protected $props = [
         'login', 'pass'
     ];
@@ -18,6 +19,11 @@ class Users extends DbModel
     {
         $this->login = $login;
         $this->pass = $pass;
+    }
+
+    public static function isAuth() : bool
+    {
+        return isset($_SESSION['login']);
     }
 
     public static function getTableName() : string

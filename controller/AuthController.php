@@ -15,6 +15,8 @@ class AuthController extends Controller
 
     public function actionlogout()
     {
-    
+        session_destroy();
+        header("location: /");
+        exit();
     }
 }

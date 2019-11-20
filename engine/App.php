@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace app\engine;
 
-use app\engine\{Render, TwigRender};
+use app\engine\{Render, TwigRender, Request};
 
 class App
 {
-    public static function Run() : void
+    public static function Run(Request $request) : void
     {
-        $url = explode('/', $_SERVER['REQUEST_URI']);
-        $controllerName = empty($url[1]) ? 'product' : $url[1];
-        $actionName = empty($url[2]) ? '' : $url[2];
+        $controllerName = empty($request->getControllerName()) ? 'product' : $request->getControllerName();
+        $actionName = empty($request->getActionName()) ? '' : $request->getActionName();
         $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
         if (class_exists($controllerClass)) {
             $controller = new $controllerClass(new Render);

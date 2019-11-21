@@ -24,20 +24,23 @@
     <script>
         'use strict';
 
+        const buyButtons = document.querySelector('.buy-btns');
+        const delButtons = document.querySelector('.del-btns');
+        
         const count = (count) => {
             if (count) {
                 document.getElementById('count').innerText = count;
             }
         };
-
-        const buy = (event) => {
+        
+        const handler = (action) => {
             if (event.target.tagName !== 'BUTTON') {
                 return;
             }
             const id = event.target.dataset.id;
             (
                 async () => {
-                    const response = await fetch('/basket/addToBasket/', {
+                    const response = await fetch(`/basket/${action}/`, {
                         method: 'POST',
                         headers: new Headers({
                             'Content-Type': 'application/json'
@@ -48,13 +51,29 @@
                     });
                     const answer = await response.json();
                     count(answer.count);
+
+                    // Костыль для обновления страницы корзины)
+                    if (action === 'deleteFromBasket') {
+                        location.reload();
+                    }
                 }
             )();
+        }
+
+        const buy = (event) => {
+            handler('addToBasket');
         };
 
-        const buyButton = document.querySelector('.buy-btn');
-        if (buyButton) {
-            buyButton.addEventListener('click', buy);
+        const del = (event) => {
+            handler('deleteFromBasket');
+        }
+
+        if (buyButtons) {
+            buyButtons.addEventListener('click', buy);
+        }
+
+        if (delButtons) {
+            delButtons.addEventListener('click', del);
         }
     </script>
 </body>

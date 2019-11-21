@@ -14,6 +14,10 @@ class AuthController extends Controller
     {
         $login = (new Request)->getParams()['login'];
         $pass = (new Request)->getParams()['pass'];
+        if (empty($login) || empty($pass)) {
+            header("Location: /");
+            exit();
+        }
         if (!Users::auth($login, $pass)) {
             die('Неверный логин/пароль');
         } else {

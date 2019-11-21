@@ -37,7 +37,7 @@ class Controller implements IRenderer
         if ($this->useLayout) {
             return $this->renderTemplate("layouts/{$this->layout}", [
                         'menu' => $this->renderTemplate('menu', [
-                        'count' => Basket::getCountWhere('session_id', session_id())
+                        'count' => Basket::getCountWhere('session_id', session_id()),
                     ]),
                     'content' => $this->renderTemplate($templateName, $params),
                     'auth' => Users::isAuth(),

@@ -10,12 +10,12 @@ use app\models\Basket;
 
 class BasketController  extends Controller
 {
-    protected $defaultAction = 'emptyBasket';
+    protected $defaultAction = 'orders';
     
-    public function actionEmptyBasket() : void
-    {
-        echo $this->render('emptyBasket');
-    }
+    // public function actionEmptyBasket() : void
+    // {
+    //     echo $this->render('emptyBasket');
+    // }
 
     public function actionAddToBasket() : void
     {

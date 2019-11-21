@@ -31,18 +31,18 @@
             const id = event.target.dataset.id;
             (
                 async () => {
-                const response = await fetch('/basket/addToBasket/', {
-                    method: 'POST',
-                    headers: new Headers({
-                        'Content-Type': 'application/json'
-                    }),
-                    body: JSON.stringify({
-                        'id': id
-                    })
-                });
-                const answer = await response.json();
-                console.log(answer.response, answer.id);
-            }
+                    const response = await fetch('/basket/addToBasket/', {
+                        method: 'POST',
+                        headers: new Headers({
+                            'Content-Type': 'application/json',
+                        }),
+                        body: JSON.stringify({
+                            'id': id,
+                        }),
+                    });
+                    const answer = await response.json();
+                    console.log(answer.response, answer.id);
+                }
             )();
         };
 

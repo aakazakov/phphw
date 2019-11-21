@@ -37,10 +37,9 @@ abstract class DbModel extends Model
         return Db::getInstance()->queryOne($sql, [":value" => $value], ['count']);
     }
 
-    public function save()
+    public function save() : void
     {
         is_null($this->id) ? $this->doInsert() : $this->doUpdate();
-        return $this;
     }
 
     public function doInsert()

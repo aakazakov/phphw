@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace app\models;
 
 use app\models\DbModel;
+use app\engine\Db;
 
 class Basket extends DbModel
 {
@@ -28,6 +29,8 @@ class Basket extends DbModel
 
     public static function getBasket($session_id)
     {
-        // return basket
+        $sql = "SELECT p.id id_prod, b.id id_basket, p.name, p.description, p.price
+        FROM basket b, goods p WHERE b.goods_id = p.id AND session_id = :session_id";
+        return Db::getInstance()->queryAll($sql, ['session_id' => $session_id]);
     }
 }

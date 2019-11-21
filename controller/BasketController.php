@@ -31,6 +31,7 @@ class BasketController  extends Controller
 
     public function actionOrders() : void
     {
-        echo $this->render('basket');
+        $basket = Basket::getBasket(session_id());
+        echo $this->render('basket', ['products' => $basket]);
     }
 }

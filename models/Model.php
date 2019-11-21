@@ -15,7 +15,7 @@ abstract class Model
             && $value != $this->$property
         ) {
             $this->$property = $value;
-            $this->props[$property] = 1;
+            $this->props[$property] = true;
         }
     }
 

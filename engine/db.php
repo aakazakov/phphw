@@ -22,7 +22,7 @@ class Db
         'charset' => 'utf8'
     ];
 
-    public function queryOne(string $sql, array $params = []) : array
+    public function queryOne(string $sql, array $params = [])
     {
         return $this->queryAll($sql, $params)[0];
     }

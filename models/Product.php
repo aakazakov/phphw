@@ -14,10 +14,10 @@ class Product extends DbModel
     protected $price;
     protected $image;
     protected $props = [
-        'name' => 0,
-        'description' => 0,
-        'price' => 0,
-        'image' => 0
+        'name' => false,
+        'description' => false,
+        'price' => false,
+        'image' => false
     ];
     
     public function __construct(

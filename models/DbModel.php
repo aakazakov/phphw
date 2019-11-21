@@ -27,7 +27,14 @@ abstract class DbModel extends Model
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM {$tableName} WHERE {$field} = :value";
-        return Db::getInstance()->queryObject($sql, ["value" => $value], static::class);
+        return Db::getInstance()->queryObject($sql, [":value" => $value], static::class);
+    }
+
+    public static function getCountWhere($field, $value)
+    {
+        $tableName = static::getTableName();
+        $sql = "SELECT count(*) as count FROM {$tableName} WHERE {$field} = :value";
+        return Db::getInstance()->queryOne($sql, [":value" => $value], ['count']);
     }
 
     public function save()
@@ -60,10 +67,10 @@ abstract class DbModel extends Model
         $changedFields = [];
         $params = [':id' => $this->id];
         foreach ($this->props as $key => $value) {
-            if ($value !== 1) continue;
+            if ($value !== true) continue;
             $changedFields[] = "`$key` = :{$key}";
             $params[":{$key}"] = $this->$key;
-            $this->props[$key] = 0;
+            $this->props[$key] = false;
         }
         $changedFields = implode(', ', $changedFields);
         $sql = "UPDATE `{$tableName}` SET {$changedFields}  WHERE `id` = :id";

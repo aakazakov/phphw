@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace app\controller;
 
 use app\interfaces\IRenderer;
+use app\models\Basket;
 use app\models\Users;
 
 class Controller implements IRenderer
@@ -35,7 +36,9 @@ class Controller implements IRenderer
     {
         if ($this->useLayout) {
             return $this->renderTemplate("layouts/{$this->layout}", [
-                    'menu' => $this->renderTemplate('menu'),
+                    'menu' => $this->renderTemplate('menu', [
+                    'count' => Basket::getCountWhere('session_id', session_id())
+                    ]),
                     'content' => $this->renderTemplate($templateName, $params),
                     'auth' => Users::isAuth(),
                     'username' => Users::getName()

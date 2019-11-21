@@ -6,6 +6,7 @@ namespace app\controller;
 
 use app\controller\Controller;
 use app\engine\Request;
+use app\models\Basket;
 
 class BasketController  extends Controller
 {
@@ -19,6 +20,7 @@ class BasketController  extends Controller
     public function actionAddToBasket() : void
     {
         $id = (new Request)->getParams()['id'];
+        (new Basket((int)session_id(), (int)$id))->save();
         echo json_encode(['response' => 'ok', 'id' => $id]);
         die();
     }

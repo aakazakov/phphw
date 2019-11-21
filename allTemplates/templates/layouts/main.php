@@ -24,6 +24,12 @@
     <script>
         'use strict';
 
+        const count = (count) => {
+            if (count) {
+                document.getElementById('count').innerText = count;
+            }
+        };
+
         const buy = (event) => {
             if (event.target.tagName !== 'BUTTON') {
                 return;
@@ -34,14 +40,14 @@
                     const response = await fetch('/basket/addToBasket/', {
                         method: 'POST',
                         headers: new Headers({
-                            'Content-Type': 'application/json',
+                            'Content-Type': 'application/json'
                         }),
                         body: JSON.stringify({
-                            'id': id,
+                            'id': id
                         }),
                     });
                     const answer = await response.json();
-                    console.log(answer.response, answer.id);
+                    count(answer.count);
                 }
             )();
         };

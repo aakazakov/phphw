@@ -20,8 +20,12 @@ class BasketController  extends Controller
     public function actionAddToBasket() : void
     {
         $id = (new Request)->getParams()['id'];
-        (new Basket((int)session_id(), (int)$id))->save();
-        echo json_encode(['response' => 'ok', 'id' => $id]);
+        (new Basket(session_id(), (int)$id))->save();
+        header('Content-Type: application/json');
+        echo json_encode([
+                'response' => 'ok',
+                'count' => Basket::getCountWhere('session_id', session_id())
+            ]);
         die();
     }
 

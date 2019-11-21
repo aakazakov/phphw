@@ -34,7 +34,7 @@ abstract class DbModel extends Model
     {
         $tableName = static::getTableName();
         $sql = "SELECT count(*) as count FROM {$tableName} WHERE {$field} = :value";
-        return Db::getInstance()->queryOne($sql, [":value" => $value], ['count']);
+        return Db::getInstance()->queryOne($sql, [":value" => $value])['count'];
     }
 
     public function save() : void
@@ -47,7 +47,7 @@ abstract class DbModel extends Model
         $tableName = static::getTableName();
         $keys = [];
         $params = [];
-        foreach (array_keys($this->props) as $item) {
+        foreach ($this->props as $item) {
             $keys[] = "`$item`";
             $params[":{$item}"] = $this->$item;
         }

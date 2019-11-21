@@ -15,7 +15,7 @@ class Basket extends DbModel
         'session_id', 'goods_id'
     ];
 
-    public function __construct(int $session_id = null, int $goods_id = null)
+    public function __construct(string $session_id = null, int $goods_id = null)
     {
         $this->session_id = $session_id;
         $this->goods_id = $goods_id;
@@ -23,7 +23,7 @@ class Basket extends DbModel
 
     public static function getTableName() : string
     {
-        return 'goods';
+        return 'basket';
     }
 
     public static function getBasket($session_id)

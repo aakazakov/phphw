@@ -46,7 +46,10 @@
             )();
         };
 
-        document.querySelector('.buy-btn').addEventListener('click', buy);
+        const buyButton = document.querySelector('.buy-btn');
+        if (buyButton) {
+            buyButton.addEventListener('click', buy);
+        }
     </script>
 </body>
 </html>

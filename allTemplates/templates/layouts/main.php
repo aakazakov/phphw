@@ -21,5 +21,32 @@
     <?endif;?><hr>
     <?=$menu?>
     <?=$content?>
+    <script>
+        'use strict';
+
+        const buy = (event) => {
+            if (event.target.tagName !== 'BUTTON') {
+                return;
+            }
+            const id = event.target.dataset.id;
+            (
+                async () => {
+                const response = await fetch('/basket/addToBasket/', {
+                    method: 'POST',
+                    headers: new Headers({
+                        'Content-Type': 'application/json'
+                    }),
+                    body: JSON.stringify({
+                        'id': id
+                    })
+                });
+                const answer = await response.json();
+                console.log(answer.response, answer.id);
+            }
+            )();
+        };
+
+        document.querySelector('.buy-btn').addEventListener('click', buy);
+    </script>
 </body>
 </html>

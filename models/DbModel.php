@@ -47,10 +47,9 @@ abstract class DbModel extends Model
         $tableName = static::getTableName();
         $keys = [];
         $params = [];
-        foreach ($this as $key => $value) {
-            if(!in_array($key, $this->props)) continue;
-            $keys[] = "`$key`";
-            $params[":{$key}"] = $value;
+        foreach (array_keys($this->props) as $item) {
+            $keys[] = "`$item`";
+            $params[":{$item}"] = $this->$item;
         }
         $keys = implode(', ', $keys);
         $values = implode(', ', array_keys($params));

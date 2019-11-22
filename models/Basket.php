@@ -13,7 +13,8 @@ class Basket extends DbModel
     protected $session_id;
     protected $goods_id;
     protected $props = [
-        'session_id', 'goods_id'
+        'session_id' => false,
+        'goods_id' => false
     ];
 
     public function __construct(string $session_id = null, int $goods_id = null)

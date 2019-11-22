@@ -47,7 +47,7 @@ abstract class DbModel extends Model
         $tableName = static::getTableName();
         $keys = [];
         $params = [];
-        foreach ($this->props as $item) {
+        foreach (array_keys($this->props) as $item) {
             $keys[] = "`$item`";
             $params[":{$item}"] = $this->$item;
         }

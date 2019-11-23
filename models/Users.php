@@ -12,13 +12,14 @@ class Users extends DbModel
     protected $login;
     protected $pass;
     protected $props = [
-        'login', 'pass'
+        'login' => false,
+        'pass' => false
     ];
 
-    public function __construct(string $login = null, string $pass = null)
+    public function __construct($login = null, $pass = null)
     {
         $this->login = $login;
-        $this->pass = $pass;
+        $this->pass = password_hash((string)$pass, PASSWORD_DEFAULT);
     }
 
     public static function isAuth() : bool

@@ -35,7 +35,10 @@ class Users extends DbModel
     public static function auth($login, $pass)
     {
         $user = static::getWhere('login', $login);
-        if ($pass == $user->pass) {
+        if (!$user) {
+            return false;
+        }
+        if (password_verify($pass, $user->pass)) {
             $_SESSION['login'] = $login;
             return true;
         }

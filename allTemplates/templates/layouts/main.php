@@ -60,7 +60,7 @@
             )();
         }
 
-        const buy = (event) => {
+        const add = (event) => {
             handler('addToBasket');
         };
 
@@ -69,7 +69,7 @@
         }
 
         if (buyButtons) {
-            buyButtons.addEventListener('click', buy);
+            buyButtons.addEventListener('click', add);
         }
 
         if (delButtons) {

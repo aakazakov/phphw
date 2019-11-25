@@ -14,7 +14,10 @@ class Orders extends Model
     protected $total_count;
     protected $total_price;
     protected $props = [
-        'user_id', 'goods_id', 'total_count', 'total_price'
+        'user_id' => false,
+        'goods_id'=> false,
+        'total_count'=> false,
+        'total_price'=> false
     ];
 
     public function __construct(
@@ -27,10 +30,5 @@ class Orders extends Model
         $this->$goods_id = $goods_id;
         $this->$total_count = $total_count;
         $this->$total_price = $total_price;
-    }
-
-    public static function getTableName() : string
-    {
-        return 'orders';
     }
 }

@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace app\models;
 
 use app\engine\Db;
-use app\models\Model;
 
-abstract class Repository extends Model
+abstract class Repository
 {
     public static function getOne(int $id)
     {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace app\models;
+namespace app\models\enities;
 
-use app\models\DbModel;
+use app\models\Model;
 
-class Product extends DbModel
+class Product extends Model
 {
     protected $id;
     protected $name;

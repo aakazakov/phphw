@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace app\models;
+namespace app\models\enities;
 
-use app\models\DbModel;
+use app\models\Model;
 use app\engine\Db;
 
-class Basket extends DbModel
+class Basket extends Model
 {
     protected $id;
     protected $session_id;

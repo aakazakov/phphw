@@ -7,7 +7,7 @@ namespace app\models;
 use app\engine\Db;
 use app\models\Model;
 
-abstract class DbModel extends Model
+abstract class Repository extends Model
 {
     public static function getOne(int $id)
     {

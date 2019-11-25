@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace app\models\repositories;
 
-class ProductRepository
+use app\models\Repository;
+
+class ProductRepository extends Repository
 {
     public static function getTableName() : string
     {

@@ -16,8 +16,6 @@ class App
         if (class_exists($controllerClass)) {
             $controller = new $controllerClass(new Render);
             $controller->runAction($actionName);
-        } else {
-            echo 'Bad news: 404 (no controller)';
         }
     }
 }

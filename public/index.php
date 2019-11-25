@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-use app\engine\{App, Autoload, AutoloadException, Request};
-use app\models\Product;
-use app\models\Users;
+use app\engine\{App, Autoload, AutoloadException};
+// use app\models\{Product, Users, Basket};
 
 try {
     session_start();

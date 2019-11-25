@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace app\models\enities;
 
 use app\models\Model;
-use app\engine\Db;
 
 class Basket extends Model
 {

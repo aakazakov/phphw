@@ -26,8 +26,12 @@ class BasketController  extends Controller
 
     public function actionDeleteFromBasket() : void
     {
-        $id = (new Request)->getParams()['id'];
-        (new Basket())->doDelete($id);
+        $id = (int)(new Request)->getParams()['id'];
+        $sessionId = session_id();
+        $basket = Basket::getOne($id);
+        if ($sessionId === $basket->session_id) {
+            $basket->doDelete();
+        }
         header('Content-Type: application/json');
         echo json_encode([
                 'response' => 'ok',

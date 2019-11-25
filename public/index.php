@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use app\engine\{App, Autoload, Request};
+use app\engine\{App, Autoload, AutoloadException, Request};
 use app\models\Product;
 use app\models\Users;
 
@@ -16,6 +16,8 @@ try {
     spl_autoload_register([new Autoload, 'LoadClass']);
 
     App::Run();
+} catch (AutoloadException $err) {
+    print_r($err->getMessage());
 } catch (\Exception $err) {
     print_r('ERROR: ' . $err->getMessage());
 }

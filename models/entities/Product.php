@@ -31,9 +31,4 @@ class Product extends Model
         $this->price = $price;
         $this->image = $image;
     }
-
-    public static function getTableName() : string
-    {
-        return 'goods';
-    }
 }

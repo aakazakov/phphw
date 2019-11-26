@@ -6,7 +6,7 @@ namespace app\controller;
 
 use app\controller\Controller;
 use app\engine\Request;
-use app\models\Basket;
+use app\models\enities\Basket;
 
 class BasketController  extends Controller
 {

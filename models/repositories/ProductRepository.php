@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace app\models\repositories;
 
 use app\models\Repository;
-use app\models\enities\Product;
+use app\models\entities\Product;
 
 class ProductRepository extends Repository
 {
-    public static function getTableName() : string
+    public function getTableName() : string
     {
         return 'goods';
     }

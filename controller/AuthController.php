@@ -6,7 +6,7 @@ namespace app\controller;
 
 use app\controller\Controller;
 use app\engine\Request;
-use app\models\Users;
+use app\models\enities\Users;
 
 class AuthController extends Controller
 {

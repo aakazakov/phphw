@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace app\models\enities;
+namespace app\models\entities;
 
 use app\models\Model;
 

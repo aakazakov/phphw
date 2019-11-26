@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace app\controller;
 
 use app\interfaces\IRenderer;
-use app\models\Basket;
-use app\models\Users;
+use app\models\entities\Basket;
+use app\models\entities\Users;
 
 class Controller implements IRenderer
 {

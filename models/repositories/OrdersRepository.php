@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace app\models\repositories;
 
 use app\models\Repository;
-use app\models\enities\Orders;
+use app\models\entities\Orders;
 
 class OrdersRepository extends Repository
 {
-    public static function getTableName() : string
+    public function getTableName() : string
     {
         return 'orders';
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\controller;
 
-use app\models\Product;
+use app\models\enities\Product;
 use app\controller\Controller;
 use app\engine\Request;
 

@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace app\models\repositories;
 
 use app\models\Repository;
-use app\models\enities\Users;
+use app\models\entities\Users;
 
 class UsersRepository extends Repository
 {
-    public static function isAuth() : bool
+    public function isAuth() : bool
     {
         return isset($_SESSION['login']);
     }
 
-    public static function getName()
+    public function getName()
     {
         return $_SESSION['login'];
     }
 
-    public static function auth($login, $pass)
+    public function auth($login, $pass)
     {
         $user = static::getWhere('login', $login);
         if (!$user) {
@@ -31,7 +31,7 @@ class UsersRepository extends Repository
         }
     }
 
-    public static function getTableName() : string
+    public function getTableName() : string
     {
         return 'users';
     }

@@ -24,7 +24,8 @@ class Autoload
         if (file_exists($file)) {
             include $file;
         } else {
-            throw new AutoloadException('404');
+            // throw new AutoloadException('404');
+            echo "oops";
         }
     }
 }

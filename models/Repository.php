@@ -12,7 +12,7 @@ abstract class Repository
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM `{$tableName}` WHERE id = :id";
-        return Db::getInstance()->queryObject($sql, [':id' => $id], static::class);
+        return Db::getInstance()->queryObject($sql, [':id' => $id], $this->getEntityClass());
     }
 
     public static function getAll() : array
@@ -26,7 +26,7 @@ abstract class Repository
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM {$tableName} WHERE {$field} = :value";
-        return Db::getInstance()->queryObject($sql, [":value" => $value], static::class);
+        return Db::getInstance()->queryObject($sql, [":value" => $value], $this->getEntityClass());
     }
 
     public static function getCountWhere($field, $value)

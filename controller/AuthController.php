@@ -6,7 +6,7 @@ namespace app\controller;
 
 use app\controller\Controller;
 use app\engine\Request;
-use app\models\enities\Users;
+use app\models\repositories\UsersRepository;
 
 class AuthController extends Controller
 {
@@ -18,7 +18,7 @@ class AuthController extends Controller
             header("Location: {$_SERVER['HTTP_REFERER']}");
             exit();
         }
-        if (!Users::auth($login, $pass)) {
+        if (!(new UsersRepository())->auth($login, $pass)) {
             die('Неверный логин/пароль');
         } else {
             header("Location: {$_SERVER['HTTP_REFERER']}");

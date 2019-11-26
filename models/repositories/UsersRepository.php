@@ -21,7 +21,7 @@ class UsersRepository extends Repository
 
     public function auth($login, $pass)
     {
-        $user = static::getWhere('login', $login);
+        $user = $this->getWhere('login', $login);
         if (!$user) {
             return false;
         }

@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace app\models;
 
 use app\engine\Db;
+use app\models\repositories\BasketRepository;
 
 abstract class Repository
 {
-    // FIXME getOne, getAll, getWhere, getCountWhere: static!!
-
     public function getOne(int $id)
     {
         $tableName = static::getTableName();
@@ -45,7 +44,7 @@ abstract class Repository
 
     public function doInsert(Model $entity) : void
     {
-        $tableName = $entity->getTableName();
+        $tableName = (new BasketRepository())->getTableName();
         $keys = [];
         $params = [];
         foreach (array_keys($entity->props) as $item) {
@@ -61,7 +60,7 @@ abstract class Repository
 
     public function doUpdate(Model $entity) : void
     {
-        $tableName = $entity->getTableName();
+        $tableName = (new BasketRepository())->getTableName();
         $changedFields = [];
         $params = [':id' => $entity->id];
         foreach ($entity->props as $key => $value) {
@@ -77,7 +76,7 @@ abstract class Repository
 
     public function doDelete(Model $entity) : void
     {
-        $tableName = $entity->getTableName();
+        $tableName = (new BasketRepository())->getTableName();
         $sql = "DELETE FROM `{$tableName}` WHERE `id` = :id";
         Db::getInstance()->execute($sql, [':id' => $entity->id]);
     }

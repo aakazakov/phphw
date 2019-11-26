@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace app\models\repositories;
 
 use app\models\Repository;
+use app\models\enities\Users;
 
 class UsersRepository extends Repository
 {
@@ -33,5 +34,10 @@ class UsersRepository extends Repository
     public static function getTableName() : string
     {
         return 'users';
+    }
+
+    public function getEntityClass()
+    {
+        return Users::class;
     }
 }

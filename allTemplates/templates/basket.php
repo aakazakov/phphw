@@ -8,7 +8,7 @@
         <button class="del" data-id="<?=$value['id_basket']?>">Удалить</button>
     </div>
 <?endforeach;?>
-<?if (count($products) === 0):?>
+<?if (!count($products)):?>
     <strong>Ваша корзина пуста</strong>
 <?endif;?>
 </section>

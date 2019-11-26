@@ -41,7 +41,7 @@ abstract class Repository
         is_null($this->id) ? $this->doInsert() : $this->doUpdate();
     }
 
-    public function doInsert()
+    public function doInsert() : void
     {
         $tableName = static::getTableName();
         $keys = [];
@@ -55,10 +55,9 @@ abstract class Repository
         $sql = "INSERT INTO `{$tableName}` ({$keys}) values ({$values})";
         Db::getInstance()->execute($sql, $params);
         $this->id = Db::getInstance()->getLastId();
-        return $this;
     }
 
-    public function doUpdate()
+    public function doUpdate() : void
     {
         $tableName = static::getTableName();
         $changedFields = [];
@@ -72,15 +71,13 @@ abstract class Repository
         $changedFields = implode(', ', $changedFields);
         $sql = "UPDATE `{$tableName}` SET {$changedFields}  WHERE `id` = :id";
         Db::getInstance()->execute($sql, $params);
-        return $this;
     }
 
-    public function doDelete()
+    public function doDelete() : void
     {
         $tableName = static::getTableName();
         $sql = "DELETE FROM `{$tableName}` WHERE `id` = :id";
         Db::getInstance()->execute($sql, [':id' => $this->id]);
-        return $this;
     }
 
     abstract public static function getTableName();

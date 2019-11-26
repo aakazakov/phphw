@@ -18,7 +18,7 @@ class Autoload
 {
     public function LoadClass($className)
     {
-        // realpath возвращает false, если файла не существует, file_exists не умеет работать с boolean,
+        // если файла не существует, realpath возвращает false, file_exists не умеет работать с boolean,
         // поэтому вместо false присваивается пустая строка;
         $file = realpath(str_replace(['app', '\\'], [ROOT_DIR, DS], $className) . '.php') ?: '';
         if (file_exists($file)) {

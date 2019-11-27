@@ -24,7 +24,7 @@ class Autoload
         if (file_exists($file)) {
             include $file;
         } else {
-            throw new AutoloadException('Oops, something went wrong. Controller says: 404.');
+            throw new AutoloadException('Oops, something went wrong. Loader says: 404.');
         }
     }
 }

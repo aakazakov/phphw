@@ -22,7 +22,7 @@ class BasketRepository extends Repository
         return 'basket';
     }
 
-    public function getEntityClass()
+    public function getEntityClass() : string
     {
         return Basket::class;
     }

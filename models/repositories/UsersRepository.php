@@ -36,7 +36,7 @@ class UsersRepository extends Repository
         return 'users';
     }
 
-    public function getEntityClass()
+    public function getEntityClass() : string
     {
         return Users::class;
     }

@@ -24,8 +24,7 @@ class Autoload
         if (file_exists($file)) {
             include $file;
         } else {
-            // throw new AutoloadException('404');
-            echo "oops";
+            throw new AutoloadException('Oops, something went wrong. Controller says: 404.');
         }
     }
 }

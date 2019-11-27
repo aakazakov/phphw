@@ -13,7 +13,7 @@ class ProductRepository extends Repository
     {
         return 'goods';
     }
-    public function getEntityClass()
+    public function getEntityClass() : string
     {
         return Product::class;
     }

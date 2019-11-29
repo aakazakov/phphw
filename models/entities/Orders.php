@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace app\models;
+namespace app\models\entities;
 
-use app\models\DbModel;
+use app\models\Model;
 
-class Orders extends DbModel
+class Orders extends Model
 {
     protected $id;
     protected $user_id;
@@ -14,7 +14,10 @@ class Orders extends DbModel
     protected $total_count;
     protected $total_price;
     protected $props = [
-        'user_id', 'goods_id', 'total_count', 'total_price'
+        'user_id' => false,
+        'goods_id'=> false,
+        'total_count'=> false,
+        'total_price'=> false
     ];
 
     public function __construct(
@@ -27,10 +30,5 @@ class Orders extends DbModel
         $this->$goods_id = $goods_id;
         $this->$total_count = $total_count;
         $this->$total_price = $total_price;
-    }
-
-    public static function getTableName() : string
-    {
-        return 'orders';
     }
 }

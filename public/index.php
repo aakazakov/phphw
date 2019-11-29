@@ -2,21 +2,20 @@
 
 declare(strict_types=1);
 
-session_start();
+use app\engine\{App, Autoload, AutoloadException};
 
-include realpath('../engine/Autoload.php');
-include realpath('../config/config.php');
-include realpath('../vendor/autoload.php');
+try {
+    session_start();
 
-use app\engine\{App, Autoload, Request};
-use app\models\Product;
-use app\models\Users;
+    include realpath('../vendor/autoload.php');
+    // include realpath('../engine/Autoload.php');  // Now loading by Composer's loader.
+    include realpath('../config/config.php');
+    
+    spl_autoload_register([new Autoload, 'LoadClass']);
 
-spl_autoload_register([new Autoload, 'LoadClass']);
-
-App::Run();
-
-
-// $prod = Product::getOne(1);
-// $prod->price = 290;
-// $prod->save();
+    App::Run();
+} catch (AutoloadException $err) {
+    print_r('ERROR: ' . $err->getMessage());
+} catch (\Exception $err) {
+    print_r('ERROR: ' . $err->getMessage());
+}

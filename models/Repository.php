@@ -5,85 +5,82 @@ declare(strict_types=1);
 namespace app\models;
 
 use app\engine\Db;
-use app\models\Model;
+use app\models\repositories\BasketRepository;
 
-abstract class DbModel extends Model
+abstract class Repository
 {
-    public static function getOne(int $id)
+    public function getOne(int $id)
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM `{$tableName}` WHERE id = :id";
-        return Db::getInstance()->queryObject($sql, [':id' => $id], static::class);
+        return Db::getInstance()->queryObject($sql, [':id' => $id], $this->getEntityClass());
     }
 
-    public static function getAll() : array
+    public function getAll() : array
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM `{$tableName}`";
         return Db::getInstance()->queryAll($sql);
     }
 
-    public static function getWhere($field, $value)
+    public function getWhere($field, $value)
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM {$tableName} WHERE {$field} = :value";
-        return Db::getInstance()->queryObject($sql, [":value" => $value], static::class);
+        return Db::getInstance()->queryObject($sql, [":value" => $value], $this->getEntityClass());
     }
 
-    public static function getCountWhere($field, $value)
+    public function getCountWhere($field, $value)
     {
         $tableName = static::getTableName();
         $sql = "SELECT count(*) as count FROM {$tableName} WHERE {$field} = :value";
         return Db::getInstance()->queryOne($sql, [":value" => $value])['count'];
     }
 
-    public function save() : void
+    public function save(Model $entity) : void
     {
-        is_null($this->id) ? $this->doInsert() : $this->doUpdate();
+        is_null($entity->id) ? $this->doInsert($entity) : $this->doUpdate($entity);
     }
 
-    public function doInsert()
+    public function doInsert(Model $entity) : void
     {
-        $tableName = static::getTableName();
+        $tableName = (new BasketRepository())->getTableName();
         $keys = [];
         $params = [];
-        foreach (array_keys($this->props) as $item) {
+        foreach (array_keys($entity->props) as $item) {
             $keys[] = "`$item`";
-            $params[":{$item}"] = $this->$item;
+            $params[":{$item}"] = $entity->$item;
         }
         $keys = implode(', ', $keys);
         $values = implode(', ', array_keys($params));
         $sql = "INSERT INTO `{$tableName}` ({$keys}) values ({$values})";
         Db::getInstance()->execute($sql, $params);
-        $this->id = Db::getInstance()->getLastId();
-        return $this;
+        $entity->setId(Db::getInstance()->getLastId());
     }
 
-    public function doUpdate()
+    public function doUpdate(Model $entity) : void
     {
-        $tableName = static::getTableName();
+        $tableName = (new BasketRepository())->getTableName();
         $changedFields = [];
-        $params = [':id' => $this->id];
-        foreach ($this->props as $key => $value) {
+        $params = [':id' => $entity->id];
+        foreach ($entity->props as $key => $value) {
             if ($value !== true) continue;
             $changedFields[] = "`$key` = :{$key}";
-            $params[":{$key}"] = $this->$key;
-            $this->props[$key] = false;
+            $params[":{$key}"] = $entity->$key;
+            $entity->props[$key] = false;
         }
         $changedFields = implode(', ', $changedFields);
         $sql = "UPDATE `{$tableName}` SET {$changedFields}  WHERE `id` = :id";
         Db::getInstance()->execute($sql, $params);
-        return $this;
     }
 
-    public function doDelete($id = null)
+    public function doDelete(Model $entity) : void
     {
-        $tableName = static::getTableName();
-        $id = $id ?: $this->id;
+        $tableName = (new BasketRepository())->getTableName();
         $sql = "DELETE FROM `{$tableName}` WHERE `id` = :id";
-        Db::getInstance()->execute($sql, [':id' => $id]);
-        return $this;
+        Db::getInstance()->execute($sql, [':id' => $entity->id]);
     }
 
-    abstract public static function getTableName();
+    abstract public function getTableName();
+    abstract public function getEntityClass();
 }

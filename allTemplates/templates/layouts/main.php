@@ -52,9 +52,8 @@
                     const answer = await response.json();
                     count(answer.count);
 
-                    // Костыль для обновления страницы корзины)
                     if (action === 'deleteFromBasket') {
-                        location.reload();
+                        document.getElementById(id).remove();
                     }
                 }
             )();

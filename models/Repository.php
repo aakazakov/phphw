@@ -55,7 +55,7 @@ abstract class Repository
         $values = implode(', ', array_keys($params));
         $sql = "INSERT INTO `{$tableName}` ({$keys}) values ({$values})";
         Db::getInstance()->execute($sql, $params);
-        $entity->id = Db::getInstance()->getLastId();
+        $entity->setId(Db::getInstance()->getLastId());
     }
 
     public function doUpdate(Model $entity) : void

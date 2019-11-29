@@ -8,7 +8,7 @@ abstract class Model
 {
     protected $props = [];
 
-    public function __set($property, $value)
+    public function __set($property, $value) : void
     {
         if (
             array_key_exists($property, $this->props)
@@ -19,12 +19,17 @@ abstract class Model
         }
     }
 
+    public function setId($value) : void
+    {
+        $this->id = $value;
+    }
+
     public function __get($property)
     {
         return $this->$property;
     }
 
-    public function __isset($property)
+    public function __isset($property) : bool
     {
         return isset($this->$property);
     }

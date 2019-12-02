@@ -15,7 +15,7 @@ return [
     'root_dir' => __DIR__ . '/../',
     'templates_dir' => __DIR__ . '/../allTemplates/templates',
     'twig_templates_dir' => dirname(__DIR__) . '/../allTemplates/templatesTwig',
-    'controllers_namespace' => 'app\controller\\',
+    'controller_namespace' => 'app\controller\\',
     'components' => [
         'db' => [
             'class' => Db::class,

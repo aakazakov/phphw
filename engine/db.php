@@ -40,7 +40,7 @@ class Db
 
     public function getLastId() : int
     {
-        return (int) $this->connection->lastInsertId();
+        return (int) $this->getConnection()->lastInsertId();
     }
 
     public function execute(string $sql, array $params)

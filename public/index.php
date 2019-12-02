@@ -2,20 +2,25 @@
 
 declare(strict_types=1);
 
-use app\engine\{App, Autoload, AutoloadException};
+use app\engine\{App, AutoloadException};
+
+include __DIR__ . '/../vendor/autoload.php';
+$config = include __DIR__ . '/../config/config.php';
 
 try {
     session_start();
 
-    include realpath('../vendor/autoload.php');
+    // include realpath('../vendor/autoload.php'); // == Old version ==
     // include realpath('../engine/Autoload.php');  // Now loading by Composer's loader.
-    include realpath('../config/config.php');
+    // include realpath('../config/config.php'); // == Old version ==
     
-    spl_autoload_register([new Autoload, 'LoadClass']);
+    // spl_autoload_register([new Autoload, 'LoadClass']); == Old version ==
 
-    App::Run();
-} catch (AutoloadException $err) {
-    print_r('ERROR: ' . $err->getMessage());
+    // App::Run(); // == Old version ==
+
+    App::call()->run($config);
+// } catch (AutoloadException $err) {
+//     print_r('ERROR: ' . $err->getMessage());
 } catch (\Exception $err) {
     print_r('ERROR: ' . $err->getMessage());
-}
+};

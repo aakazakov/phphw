@@ -11,28 +11,28 @@ abstract class Repository
 {
     public function getOne(int $id)
     {
-        $tableName = static::getTableName();
+        $tableName = $this->getTableName();
         $sql = "SELECT * FROM `{$tableName}` WHERE id = :id";
         return Db::getInstance()->queryObject($sql, [':id' => $id], $this->getEntityClass());
     }
 
     public function getAll() : array
     {
-        $tableName = static::getTableName();
+        $tableName = $this->getTableName();
         $sql = "SELECT * FROM `{$tableName}`";
         return Db::getInstance()->queryAll($sql);
     }
 
     public function getWhere($field, $value)
     {
-        $tableName = static::getTableName();
+        $tableName = $this->getTableName();
         $sql = "SELECT * FROM {$tableName} WHERE {$field} = :value";
         return Db::getInstance()->queryObject($sql, [":value" => $value], $this->getEntityClass());
     }
 
     public function getCountWhere($field, $value)
     {
-        $tableName = static::getTableName();
+        $tableName = $this->getTableName();
         $sql = "SELECT count(*) as count FROM {$tableName} WHERE {$field} = :value";
         return Db::getInstance()->queryOne($sql, [":value" => $value])['count'];
     }

@@ -4,23 +4,29 @@ declare(strict_types=1);
 
 namespace app\engine;
 
-use app\traits\TSingletone;
 use \PDO;
-use PDOException;
 
 class Db
 {
-    use TSingletone;
-
     private $connection = null;
-    private $config = [
-        'driver' => 'mysql',
-        'host' => 'localhost',
-        'login' => 'root',
-        'password' => '',
-        'database' => 'shop_db',
-        'charset' => 'utf8'
-    ];
+    private $config = [];
+
+    public function __construct(
+        $driver,
+        $host,
+        $login,
+        $password,
+        $database,
+        $charset = 'utf8'
+    )
+    {
+        $this->config['driver'] = $driver;
+        $this->config['host'] = $host;
+        $this->config['login'] = $login;
+        $this->config['password'] = $password;
+        $this->config['database'] = $database;
+        $this->config['charset'] = $charset;
+    }
 
     public function queryOne(string $sql, array $params = [])
     {

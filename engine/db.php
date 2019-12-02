@@ -40,6 +40,7 @@ class Db
 
     public function getLastId() : int
     {
+        // FIXME $this->connection в этом месте null.
         return (int) $this->getConnection()->lastInsertId();
     }
 

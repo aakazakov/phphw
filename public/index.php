@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use app\engine\{App, AutoloadException};
+use app\engine\App;
 
 include __DIR__ . '/../vendor/autoload.php';
 $config = include __DIR__ . '/../config/config.php';

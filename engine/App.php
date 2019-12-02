@@ -54,6 +54,11 @@ class App
         }
     }
 
+    function __get($name)
+    {
+        return $this->components->get($name);
+    }
+
     /*      == Old version ==
     public static function Run() : void
     {

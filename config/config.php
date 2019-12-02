@@ -13,8 +13,8 @@ use app\engine\Request;
 
 return [
     'root_dir' => __DIR__ . '/../',
-    'templates_dir' => __DIR__ . '/../allTemplates/templates',
-    'twig_templates_dir' => dirname(__DIR__) . '/../allTemplates/templatesTwig',
+    'templates_dir' => __DIR__ . '/../allTemplates/templates/',
+    'twig_templates_dir' => __DIR__ . '/../allTemplates/templatesTwig/',
     'controller_namespace' => 'app\controller\\',
     'components' => [
         'db' => [

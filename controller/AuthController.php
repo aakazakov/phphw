@@ -4,21 +4,20 @@ declare(strict_types=1);
 
 namespace app\controller;
 
+use app\engine\App;
 use app\controller\Controller;
-use app\engine\Request;
-use app\models\repositories\UsersRepository;
 
 class AuthController extends Controller
 {
     public function actionLogin()
     {
-        $login = (new Request)->getParams()['login'];
-        $pass = (new Request)->getParams()['pass'];
+        $login = App::call()->request->getParams()['login'];
+        $pass = App::call()->request->getParams()['pass'];
         if (empty($login) || empty($pass)) {
             header("Location: {$_SERVER['HTTP_REFERER']}");
             exit();
         }
-        if (!(new UsersRepository())->auth($login, $pass)) {
+        if (!App::call()->usersRepository->auth($login, $pass)) {
             die('Неверный логин/пароль');
         } else {
             header("Location: {$_SERVER['HTTP_REFERER']}");

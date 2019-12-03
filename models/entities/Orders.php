@@ -14,7 +14,7 @@ class Orders extends Model
     protected $session_id;
     protected $props = [
         'user_name' => false,
-        'user-email' => false,
+        'user_email' => false,
         'session_id' => false
     ];
 

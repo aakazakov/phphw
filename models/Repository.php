@@ -43,7 +43,7 @@ abstract class Repository
 
     public function doInsert(Model $entity) : void
     {
-        $tableName = App::Call()->basketRepository->getTableName();
+        $tableName = $this->getTableName();
         $keys = [];
         $params = [];
         foreach (array_keys($entity->props) as $item) {
@@ -59,7 +59,7 @@ abstract class Repository
 
     public function doUpdate(Model $entity) : void
     {
-        $tableName = App::Call()->basketRepository->getTableName();
+        $tableName = $this->getTableName();
         $changedFields = [];
         $params = [':id' => $entity->id];
         foreach ($entity->props as $key => $value) {
@@ -75,7 +75,7 @@ abstract class Repository
 
     public function doDelete(Model $entity) : void
     {
-        $tableName = App::Call()->basketRepository->getTableName();
+        $tableName = $this->getTableName();
         $sql = "DELETE FROM `{$tableName}` WHERE `id` = :id";
         App::Call()->db->execute($sql, [':id' => $entity->id]);
     }

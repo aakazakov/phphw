@@ -13,8 +13,8 @@
     <hr>
     <p>Оформление заказа</p>
     <form action="/orders/issue" method="post">
-        <input type="text" name="name" placeholder="ваше имя">
-        <input type="email" name="email" placeholder="e-mail">
+        <input type="text" name="user_name" placeholder="ваше имя">
+        <input type="email" name="user_email" placeholder="e-mail">
         <button type="submit">Заказать</button>
     </form>
 <?endif;?>

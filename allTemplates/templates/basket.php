@@ -14,7 +14,6 @@
     <p>Оформление заказа</p>
     <form action="/orders/issue" method="post">
         <input type="text" name="name" placeholder="ваше имя">
-        <input type="tel" name="tel" placeholder="номер телефона">
         <input type="email" name="email" placeholder="e-mail">
         <button type="submit">Заказать</button>
     </form>

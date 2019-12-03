@@ -12,9 +12,11 @@ class OrdersController extends Controller
 {
     public function actionIssue()
     {
+        $session_id = session_id();
+        session_regenerate_id();
         $user_name = App::call()->request->getParams()['user_name'];
         $user_email = App::call()->request->getParams()['user_email'];
-        $anOrder = new Orders($user_name, $user_email, session_id());
+        $anOrder = new Orders($user_name, $user_email, $session_id);
         App::call()->ordersRepository->save($anOrder);
         echo $this->render('orders');
     }

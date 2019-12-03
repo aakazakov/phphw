@@ -9,6 +9,7 @@ use app\models\Model;
 class Users extends Model
 {
     protected $id;
+    protected $role;
     protected $login;
     protected $pass;
     protected $props = [

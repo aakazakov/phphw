@@ -9,6 +9,7 @@ use app\models\Model;
 class Orders extends Model
 {
     protected $id;
+    protected $status;
     protected $user_name;
     protected $user_email;
     protected $session_id;

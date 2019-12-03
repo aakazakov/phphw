@@ -27,6 +27,9 @@ class UsersRepository extends Repository
         }
         if (password_verify($pass, $user->pass)) {
             $_SESSION['login'] = $login;
+            if ($user->role) {
+                $_SESSION['role'] = $user->role;
+            }
             return true;
         }
     }

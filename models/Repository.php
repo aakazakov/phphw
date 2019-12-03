@@ -80,6 +80,13 @@ abstract class Repository
         App::Call()->db->execute($sql, [':id' => $entity->id]);
     }
 
+    public function doDeleteBySession(Model $entity)
+    {
+        $tableName = $this->getTableName();
+        $sql = "DELETE FROM `{$tableName}` WHERE `session_id` = :session_id";
+        App::call()->db->execute($sql, [':session_id' => "{$entity->session_id}"]);
+    }
+
     abstract public function getTableName();
     abstract public function getEntityClass();
 }

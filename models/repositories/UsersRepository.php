@@ -34,6 +34,11 @@ class UsersRepository extends Repository
         }
     }
 
+    public function isAdmin()
+    {
+        return ($_SESSION['role'] === 'admin') ? true : false;
+    }
+
     public function getTableName() : string
     {
         return 'users';

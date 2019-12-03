@@ -40,7 +40,8 @@ class Controller implements IRenderer
                     ]),
                     'content' => $this->renderTemplate($templateName, $params),
                     'auth' => App::call()->usersRepository->isAuth(),
-                    'username' => App::call()->usersRepository->getName()
+                    'username' => App::call()->usersRepository->getName(),
+                    'admin' => App::call()->usersRepository->isAdmin()
                 ]
             );
         } else {

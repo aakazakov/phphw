@@ -64,7 +64,7 @@ class Db
         return $pdoStatement->fetch();
     }
 
-    private function getConnection() : PDO
+    private function getConnection()
     {
         if (is_null($this->connection)) {
             $this->connection = new PDO(

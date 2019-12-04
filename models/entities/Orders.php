@@ -16,7 +16,8 @@ class Orders extends Model
     protected $props = [
         'user_name' => false,
         'user_email' => false,
-        'session_id' => false
+        'session_id' => false,
+        'status' => false
     ];
 
     public function __construct(

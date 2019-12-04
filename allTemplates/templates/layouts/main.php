@@ -22,7 +22,7 @@
     <?if ($admin):?>
         <a style="padding: 2px 5px; margin-left: 5px;
         background-color: lightgray; text-decoration:none;"
-        href="#">Панель админа</a>
+        href="/admin/">Панель админа</a>
     <?endif;?>
     <hr>
     <?=$menu?>

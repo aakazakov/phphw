@@ -34,9 +34,8 @@ class OrdersController extends Controller
     public function actionAnOrder()
     {
         $session_id = App::call()->request->getParams()['sid'];
-        // FIXME getWhere не поджходит - возвращает объект (??)
-        $anOrder = App::call()->basketRepository->getWhere('session_id', $session_id);
-        echo $this->render('anOrder');
+        $anOrder = App::call()->basketRepository->getAllWhere('session_id', $session_id);
         var_dump($anOrder);
+        echo $this->render('anOrder');
     }
 }

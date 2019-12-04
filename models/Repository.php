@@ -29,6 +29,13 @@ abstract class Repository
         return App::Call()->db->queryObject($sql, [":value" => $value], $this->getEntityClass());
     }
 
+    public function getAllWhere($field, $value)
+    {
+        $tableName = $this->getTableName();
+        $sql = "SELECT * FROM {$tableName} WHERE {$field} = :value";
+        return App::Call()->db->queryAll($sql, [":value" => $value]);
+    }
+
     public function getCountWhere($field, $value)
     {
         $tableName = $this->getTableName();

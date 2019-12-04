@@ -35,15 +35,15 @@ class OrdersController extends Controller
     {
         $session_id = App::call()->request->getParams()['sid'];
         $anOrder = App::call()->basketRepository->getAllWhere('session_id', $session_id);
-        var_dump($this->getGoods($anOrder));
-        echo $this->render('anOrder');
+        $goods = $this->getGoods($anOrder);
+        echo $this->render('anOrder', ['goods' => $goods]);
     }
 
     private function getGoods(array $orders)
     {
         $goods=[];
         foreach ($orders as $value) {
-            $goods[] = App::call()->basketRepository->getOne((int)$value['id']);
+            $goods[] = App::call()->productRepository->getOne((int)$value['goods_id']);
         }
         return $goods;
     }

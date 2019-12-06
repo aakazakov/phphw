@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace app\controller;
 
 use app\interfaces\IRenderer;
-use app\models\repositories\{BasketRepository, UsersRepository};
+use app\engine\App;
 
 class Controller implements IRenderer
 {
@@ -36,11 +36,12 @@ class Controller implements IRenderer
         if ($this->useLayout) {
             return $this->renderTemplate("layouts/{$this->layout}", [
                         'menu' => $this->renderTemplate('menu', [
-                        'count' => (new BasketRepository())->getCountWhere('session_id', session_id()),
+                        'count' => App::call()->basketRepository->getCountWhere('session_id', session_id()),
                     ]),
                     'content' => $this->renderTemplate($templateName, $params),
-                    'auth' => (new UsersRepository())->isAuth(),
-                    'username' => (new UsersRepository())->getName()
+                    'auth' => App::call()->usersRepository->isAuth(),
+                    'username' => App::call()->usersRepository->getName(),
+                    'admin' => App::call()->usersRepository->isAdmin()
                 ]
             );
         } else {

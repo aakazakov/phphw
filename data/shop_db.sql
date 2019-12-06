@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 23 2019 г., 12:23
+-- Время создания: Дек 06 2019 г., 16:56
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.1.32
 
@@ -53,11 +53,10 @@ CREATE TABLE `goods` (
 --
 
 INSERT INTO `goods` (`id`, `name`, `description`, `price`, `image`) VALUES
-(1, 'Чай Зеленый', 'Крупнолистовой, Китай', 150, ''),
-(2, 'Кофе', 'Зерно, средняя обжарка, Бразилия', 295, ''),
-(91, 'Чай Черный', 'Цейлон', 123, NULL),
-(93, 'Пуэр', '2013г, Китай', 140, NULL),
-(94, 'Кофе2', 'Робуста, Бразилия', 323, NULL);
+(104, 'Чай', 'Зеленый, крупнолистовой, Китай', 200, NULL),
+(105, 'Кофе', 'Зерно, темная обжарка, Арабика, Бразилия', 250, NULL),
+(106, 'Пуэр', '10 лет, Китай', 500, NULL),
+(107, 'Кола', 'Без сахара', 70, NULL);
 
 -- --------------------------------------------------------
 
@@ -67,10 +66,10 @@ INSERT INTO `goods` (`id`, `name`, `description`, `price`, `image`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `goods_id` int(11) NOT NULL,
-  `total_count` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `total_price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `session_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'не определен'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -82,16 +81,17 @@ CREATE TABLE `orders` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `login` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pass` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `pass` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `pass`) VALUES
-(6, 'admin', '$2y$10$8KxpFo.hmut01DVnBb0bOe87AjRLnL4eBaPe2uxN8mqFFVD6LbCDS'),
-(7, 'user', '$2y$10$dEkYjd2wOI4betJC91HbKOcs8mGXgVuvH6JPBrkVH.pN39KhTmbqu');
+INSERT INTO `users` (`id`, `login`, `pass`, `role`) VALUES
+(6, 'admin', '$2y$10$8KxpFo.hmut01DVnBb0bOe87AjRLnL4eBaPe2uxN8mqFFVD6LbCDS', 'admin'),
+(8, 'user', '$2y$10$TBEoyqjBBYcca7qNnG2UnejkaYfxF9ciVG7.qeT12hbW8iSVLltEW', NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -129,25 +129,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `basket`
 --
 ALTER TABLE `basket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
 
 --
 -- AUTO_INCREMENT для таблицы `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

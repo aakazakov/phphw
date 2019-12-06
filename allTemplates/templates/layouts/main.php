@@ -18,7 +18,13 @@
             <input type="text" name="pass" placeholder="Пароль">
             <input type="submit" name="submit" value="Войти">
         </form>
-    <?endif;?><hr>
+    <?endif;?>
+    <?if ($admin):?>
+        <a style="padding: 2px 5px; margin-left: 5px;
+        background-color: lightgray; text-decoration:none;"
+        href="/admin/">Панель админа</a>
+    <?endif;?>
+    <hr>
     <?=$menu?>
     <?=$content?>
     <script>

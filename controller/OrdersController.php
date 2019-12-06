@@ -23,20 +23,24 @@ class OrdersController extends Controller
 
     public function actionStatus()
     {
-        $id = (int) App::call()->request->getParams()['id'];
-        $anOrder = App::call()->ordersRepository->getOne($id);
-        $anOrder->status = App::call()->request->getParams()['status'];
-        App::call()->ordersRepository->save($anOrder);
-        header("location: {$_SERVER['HTTP_REFERER']}");
-        exit();
+        if (App::call()->usersRepository->isAdmin()) {
+            $id = (int) App::call()->request->getParams()['id'];
+            $anOrder = App::call()->ordersRepository->getOne($id);
+            $anOrder->status = App::call()->request->getParams()['status'];
+            App::call()->ordersRepository->save($anOrder);
+            header("location: {$_SERVER['HTTP_REFERER']}");
+            exit();
+        }
     }
 
     public function actionAnOrder()
     {
-        $session_id = App::call()->request->getParams()['sid'];
-        $anOrder = App::call()->basketRepository->getAllWhere('session_id', $session_id);
-        $goods = $this->getGoods($anOrder);
-        echo $this->render('anOrder', ['goods' => $goods]);
+        if (App::call()->usersRepository->isAdmin()) {
+            $session_id = App::call()->request->getParams()['sid'];
+            $anOrder = App::call()->basketRepository->getAllWhere('session_id', $session_id);
+            $goods = $this->getGoods($anOrder);
+            echo $this->render('anOrder', ['goods' => $goods]);
+        }
     }
 
     private function getGoods(array $orders)

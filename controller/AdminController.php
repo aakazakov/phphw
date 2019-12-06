@@ -13,7 +13,11 @@ class AdminController extends Controller
 
     public function actionPanel()
     {
-        $orders = array_reverse(App::call()->ordersRepository->getAll(), true);
-        echo $this->render('admin', ['orders' => $orders]);
+        if (App::call()->usersRepository->isAdmin()) {
+            $orders = array_reverse(App::call()->ordersRepository->getAll(), true);
+            echo $this->render('admin', ['orders' => $orders]);
+        } else {
+            header("Location: /");
+        }
     }
 }

@@ -39,18 +39,18 @@ class OrdersController extends Controller
             $id = App::call()->request->getParams()['id'];
             $session_id = App::call()->ordersRepository->getWhere('id', $id)->session_id;
             $anOrder = App::call()->basketRepository->getAllWhere('session_id', $session_id);
-            var_dump($anOrder); die();
             $goods = $this->getGoods($anOrder);
             echo $this->render('anOrder', ['goods' => $goods]);
         }
     }
 
-    private function getGoods(array $orders)
+    private function getGoods(array $order)
     {
-        $goods=[];
-        foreach ($orders as $value) {
-            $goods[] = App::call()->productRepository->getOne((int)$value['goods_id']);
+        $goods_id = [];
+        foreach ($order as $value) {
+            $goods_id[] = $value['goods_id'];
         }
-        return $goods;
+        $goods_id = implode(',', $goods_id);
+        return App::call()->productRepository->getAllWhereIn('id', $goods_id);
     }
 }

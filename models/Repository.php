@@ -36,6 +36,13 @@ abstract class Repository
         return App::Call()->db->queryAll($sql, [":value" => $value]);
     }
 
+    public function getAllWhereIn($field, $value)
+    {
+        $tableName = $this->getTableName();
+        $sql = "SELECT * FROM {$tableName} WHERE {$field} IN ({$value})";
+        return App::Call()->db->queryAll($sql, [":value" => $value]);
+    }
+
     public function getCountWhere($field, $value)
     {
         $tableName = $this->getTableName();

@@ -36,8 +36,10 @@ class OrdersController extends Controller
     public function actionAnOrder()
     {
         if (App::call()->usersRepository->isAdmin()) {
-            $session_id = App::call()->request->getParams()['sid'];
+            $id = App::call()->request->getParams()['id'];
+            $session_id = App::call()->ordersRepository->getWhere('id', $id)->session_id;
             $anOrder = App::call()->basketRepository->getAllWhere('session_id', $session_id);
+            var_dump($anOrder); die();
             $goods = $this->getGoods($anOrder);
             echo $this->render('anOrder', ['goods' => $goods]);
         }
